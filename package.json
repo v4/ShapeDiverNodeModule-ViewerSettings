@@ -2,10 +2,10 @@
   "name": "shapedivernodemodule-viewersettings",
   "version": "1.0.0",
   "description": "ShapeDiverNodeModule-ViewerSettings",
-  "main": "out/main.js",
+  "main": "./dist/bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "./node_modules/webpack/bin/webpack.js --progress --hide-modules --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "shapedivernodemodule-typechecks": "git+https://git-codecommit.us-east-1.amazonaws.com/v1/repos/ShapeDiverNodeModule-TypeChecks#master",
     "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "clean": "^4.0.2",
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
