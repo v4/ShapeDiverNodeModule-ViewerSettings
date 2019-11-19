@@ -1,16 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    // "noImplicitAny": true,
-    "target": "es5", 
-    "module": "commonjs", 
+    "outDir": "./lib/",
+    "sourceMap": true,
+    "declaration": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
     "lib": [
       "es2015",
       "es2017",
       "dom"
-    ], 
-    "jsx": "react",
-    "allowJs": true,
-    "sourceMap": true,
-  }
+    ],
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }
