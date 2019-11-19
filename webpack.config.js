@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ClosurePlugin = require('closure-webpack-plugin');
+
 
 module.exports = {
   entry: {
@@ -19,10 +21,11 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: [
-    new UglifyJsPlugin({
-      sourceMap: true,
-      include: /\.min\.js$/,
-    })
+    // new UglifyJsPlugin({
+    //   sourceMap: true,
+    //   include: /\.min\.js$/,
+    // })
+    new ClosurePlugin({mode: 'STANDARD'})
   ],
   module: {
     rules: [

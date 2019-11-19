@@ -17,6 +17,8 @@
   "dependencies": {},
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
+    "closure-webpack-plugin": "^2.0.1",
+    "google-closure-compiler": "^20191111.0.0",
     "shx": "^0.3.2",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
