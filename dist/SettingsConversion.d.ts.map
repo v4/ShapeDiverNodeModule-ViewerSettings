@@ -1,0 +1,1 @@
+{"version":3,"file":"SettingsConversion.d.ts","sourceRoot":"","sources":["../src/SettingsConversion.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAyC,MAAM,yBAAyB,CAAC;AAI3F,qBAAa,kBAAkB;IAG3B,OAAO,CAAC,iBAAiB,CAAmB;IAC5C,OAAO,CAAC,SAAS,CAGhB;;IAeM,OAAO,CAAC,YAAY,EAAE,GAAG,EAAE,OAAO,EAAE,MAAM,GAAG,GAAG;IAyBhD,oBAAoB,CAAC,YAAY,EAAE,GAAG,GAAG,SAAS;IAWzD,OAAO,CAAC,iBAAiB;CAe5B"}

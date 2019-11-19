@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./lib/",
-    "sourceMap": true,
+    "outDir": "./dist/",
     "declaration": true,
+    "declarationMap": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "noImplicitAny": false,
     "module": "commonjs",
     "target": "es5",
