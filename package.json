@@ -5,9 +5,6 @@
   "main": "./bundle.js",
   "node" : "./bundle.cjs.js",
   "module": "./bundle.umd.js",
-  "files": [
-    "dist"
-  ],
   "types": "./dist/main.d.ts",
   "scripts": {
     "build": "rollup -c",

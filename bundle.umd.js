@@ -155,15 +155,13 @@
             for (var s in iterable) {
                 if (iterable[s] instanceof Setting) {
                     var setting = iterable[s];
-                    if (setting.persistent) {
-                        var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
-                        if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                            this._fromJSON(settingsJSON[s], iterable[s].value);
-                        }
-                        else {
-                            if (settingsJSON[s] !== undefined)
-                                iterable[s].value = settingsJSON[s];
-                        }
+                    var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
+                    if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
+                        this._fromJSON(settingsJSON[s], iterable[s].value);
+                    }
+                    else {
+                        if (settingsJSON[s] !== undefined)
+                            iterable[s].value = settingsJSON[s];
                     }
                 }
                 else {

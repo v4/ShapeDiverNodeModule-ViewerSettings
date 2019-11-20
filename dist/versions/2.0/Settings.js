@@ -1,260 +1,23 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var tslib = require('tslib');
-
-var SettingsVersion = /** @class */ (function () {
-    // #endregion Properties (1)
-    // #region Constructors (1)
-    function SettingsVersion(version) {
-        if (version === void 0) { version = '1.0'; }
-        // #region Properties (1)
-        this._versionLevels = [];
-        var splitArray = version.split('.');
-        for (var n in splitArray)
-            this._versionLevels.push(+splitArray[n]);
-    }
-    Object.defineProperty(SettingsVersion.prototype, "versionLevels", {
-        // #endregion Constructors (1)
-        // #region Public Accessors (1)
-        get: function () {
-            return this._versionLevels;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    // #endregion Public Accessors (1)
-    // #region Public Methods (3)
-    SettingsVersion.prototype.equalTo = function (v) {
-        if (v.versionLevels.length !== this._versionLevels.length)
-            return false;
-        for (var i = 0; i < this._versionLevels.length; i++)
-            if (v.versionLevels[i] !== this._versionLevels[i])
-                return false;
-        return true;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
     };
-    SettingsVersion.prototype.isLowerThan = function (v) {
-        for (var i = 0; i < this._versionLevels.length; i++) {
-            if (this._versionLevels[i] > v.versionLevels[i]) {
-                return false;
-            }
-            else if (this._versionLevels[i] < v.versionLevels[i]) {
-                return true;
-            }
-        }
-        return false;
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
-    SettingsVersion.prototype.toString = function () {
-        return this._versionLevels.join('.');
-    };
-    return SettingsVersion;
-}());
-
-var Setting = /** @class */ (function () {
-    // #region Constructors (1)
-    function Setting(_value, _type, _desc, _persistent) {
-        if (_persistent === void 0) { _persistent = true; }
-        this._value = _value;
-        this._type = _type;
-        this._desc = _desc;
-        this._persistent = _persistent;
-    }
-    Object.defineProperty(Setting.prototype, "desc", {
-        // #endregion Constructors (1)
-        // #region Public Accessors (5)
-        get: function () {
-            return this._desc;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Setting.prototype, "persistent", {
-        get: function () {
-            return this._persistent;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Setting.prototype, "type", {
-        get: function () {
-            return this._type;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Setting.prototype, "value", {
-        get: function () {
-            return this._value;
-        },
-        set: function (v) {
-            this._value = v;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Setting;
-}());
-
-var BaseSettings = /** @class */ (function () {
-    function BaseSettings() {
-    }
-    Object.defineProperty(BaseSettings.prototype, "settings", {
-        // #endregion Properties (2)
-        // #region Public Accessors (3)
-        get: function () {
-            return this._settings;
-        },
-        set: function (settings) {
-            this._settings = settings;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(BaseSettings.prototype, "version", {
-        get: function () {
-            return this._version;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    // #endregion Public Accessors (3)
-    // #region Public Methods (4)
-    BaseSettings.prototype.getSettingDefinitions = function () {
-        var obj = {};
-        this._getSettingDefinitions(this._settings, obj, '');
-        return obj;
-    };
-    BaseSettings.prototype.getSettingObject = function (key) {
-        var levels = key.split('.');
-        var obj = this._settings;
-        for (var i = 0; i < levels.length; i++) {
-            obj = obj[levels[i]];
-            if (obj instanceof Setting && i < levels.length - 1) {
-                obj = obj.value;
-            }
-            else if (obj instanceof Setting) {
-                return obj;
-            }
-            else if (!obj) {
-                return;
-            }
-        }
-        return;
-    };
-    BaseSettings.prototype.getSettings = function () {
-        var obj = {};
-        this._getSettings(this._settings, obj, '');
-        return obj;
-    };
-    BaseSettings.prototype.toJSON = function () {
-        return this._toJSON(this._settings);
-    };
-    // #endregion Public Abstract Methods (2)
-    // #region Protected Methods (2)
-    BaseSettings.prototype._fromJSON = function (settingsJSON, iterable) {
-        if (!settingsJSON)
-            return;
-        for (var s in iterable) {
-            if (iterable[s] instanceof Setting) {
-                var setting = iterable[s];
-                var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
-                if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                    this._fromJSON(settingsJSON[s], iterable[s].value);
-                }
-                else {
-                    if (settingsJSON[s] !== undefined)
-                        iterable[s].value = settingsJSON[s];
-                }
-            }
-            else {
-                this._fromJSON(settingsJSON[s], iterable[s]);
-            }
-        }
-    };
-    BaseSettings.prototype._toJSON = function (iterable) {
-        var objJSON = {};
-        for (var s in iterable) {
-            if (iterable[s] instanceof Setting) {
-                var setting = iterable[s];
-                if (setting.persistent) {
-                    var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
-                    if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                        objJSON[s] = this._toJSON(iterable[s].value);
-                    }
-                    else {
-                        objJSON[s] = iterable[s].value;
-                    }
-                }
-            }
-            else if (iterable[s] instanceof String || typeof iterable[s] === 'string') {
-                objJSON[s] = iterable[s];
-            }
-            else {
-                objJSON[s] = this._toJSON(iterable[s]);
-            }
-        }
-        return objJSON;
-    };
-    // #endregion Protected Methods (2)
-    // #region Private Methods (2)
-    BaseSettings.prototype._getSettingDefinitions = function (iterable, obj, path) {
-        var parentPath = path ? path + '.' : '';
-        for (var s in iterable) {
-            if (iterable[s] instanceof Setting) {
-                var setting = iterable[s];
-                var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
-                if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                    if (iterable[s].desc) {
-                        obj[parentPath + s] = {};
-                        obj[parentPath + s].descripton = iterable[s].desc;
-                        if (typeof iterable[s].type === 'string' || iterable[s].type instanceof String)
-                            obj[parentPath + s].type = iterable[s].type;
-                    }
-                    this._getSettingDefinitions(iterable[s].value, obj, parentPath + s);
-                }
-                else {
-                    if (iterable[s].desc) {
-                        obj[parentPath + s] = {};
-                        obj[parentPath + s].descripton = iterable[s].desc;
-                        if (typeof iterable[s].type === 'string' || iterable[s].type instanceof String)
-                            obj[parentPath + s].type = iterable[s].type;
-                    }
-                }
-            }
-            else if (!(iterable[s] instanceof String || typeof iterable[s] === 'string')) {
-                this._getSettingDefinitions(iterable[s], obj, parentPath + s);
-            }
-        }
-    };
-    BaseSettings.prototype._getSettings = function (iterable, obj, path) {
-        var parentPath = path ? path + '.' : '';
-        for (var s in iterable) {
-            if (iterable[s] instanceof Setting) {
-                var setting = iterable[s];
-                if (setting.persistent) {
-                    var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
-                    if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                        this._getSettings(iterable[s].value, obj, parentPath + s);
-                    }
-                    else {
-                        obj[parentPath + s] = iterable[s].value;
-                    }
-                }
-            }
-            else if (iterable[s] instanceof String || typeof iterable[s] === 'string') {
-                obj[parentPath + s] = iterable[s];
-            }
-            else {
-                this._getSettings(iterable[s], obj, parentPath + s);
-            }
-        }
-    };
-    return BaseSettings;
-}());
-
+})();
+import { SettingsVersion } from "../../SettingsVersion";
+import { Setting } from "../../Setting";
+import { Settings as OldSettings } from "../1.0/Settings";
+import { BaseSettings } from "../../BaseSettings";
+//import typeChecks from "shapedivernodemodule-typechecks";
 var Settings = /** @class */ (function (_super) {
-    tslib.__extends(Settings, _super);
+    __extends(Settings, _super);
     // #endregion Properties (1)
     // #region Constructors (1)
     /**
@@ -262,91 +25,6 @@ var Settings = /** @class */ (function (_super) {
      * @param settingsObject a settings object that is a JSON representation of this SettingsObject
      */
     function Settings(settingsJSON) {
-        var _this = _super.call(this) || this;
-        _this._version = new SettingsVersion('1.0');
-        _this._settings = {
-            build_date: new Setting('', function (v) { return true; }),
-            build_version: new Setting('', function (v) { return true; }),
-            settings_version: new Setting('1.0', function (v) { return true; }),
-            ambientOcclusion: new Setting(true, function (v) { return true; }),
-            autoRotateSpeed: new Setting(0.0, function (v) { return true; }),
-            bumpAmplitude: new Setting(1.0, function (v) { return true; }),
-            camera: new Setting({
-                position: new Setting({ x: 0, y: 0, z: 0 }, function (v) { return true; }),
-                target: new Setting({ x: 0, y: 0, z: 0 }, function (v) { return true; }),
-            }, function (v) { return true; }),
-            cameraAutoAdjust: new Setting(false, function (v) { return true; }),
-            cameraMovementDuration: new Setting(0, function (v) { return true; }),
-            cameraOrtho: new Setting({
-                position: new Setting({ x: 0, y: 0, z: 0 }, function (v) { return true; }),
-                target: new Setting({ x: 0, y: 0, z: 0 }, function (v) { return true; }),
-            }, function (v) { return true; }),
-            cameraRevertAtMouseUp: new Setting(false, function (v) { return true; }),
-            clearAlpha: new Setting(1.0, function (v) { return true; }),
-            clearColor: new Setting('#ffffff', function (v) { return true; }),
-            commitParameters: new Setting(false, function (v) { return true; }),
-            controlDamping: new Setting(0.1, function (v) { return true; }),
-            controlNames: new Setting(null, function (v) { return function (v) { return true; }; }),
-            controlOrder: new Setting(null, function (v) { return function (v) { return true; }; }),
-            defaultMaterialColor: new Setting('#d3d3d3', function (v) { return true; }),
-            disablePan: new Setting(false, function (v) { return true; }),
-            disableZoom: new Setting(false, function (v) { return true; }),
-            enableAutoRotate: new Setting(false, function (v) { return true; }),
-            enableRotation: new Setting(true, function (v) { return true; }),
-            environmentMap: new Setting('none', function (v) { return true; }),
-            environmentMapResolution: new Setting('1024', function (v) { return true; }),
-            fov: new Setting(45, function (v) { return true; }),
-            lightScene: new Setting('default', function (v) { return true; }),
-            lightScenes: new Setting(null, function (v) { return true; }),
-            panSpeed: new Setting(0.5, function (v) { return true; }),
-            parametersHidden: new Setting(null, function (v) { return function (v) { return true; }; }),
-            pointSize: new Setting(1.0, function (v) { return true; }),
-            revertAtMouseUpDuration: new Setting(800, function (v) { return true; }),
-            rotateSpeed: new Setting(0.25, function (v) { return true; }),
-            showEnvironmentMap: new Setting(false, function (v) { return true; }),
-            showGrid: new Setting(false, function (v) { return true; }),
-            showGroundPlane: new Setting(false, function (v) { return true; }),
-            showShadows: new Setting(true, function (v) { return true; }),
-            topView: new Setting(false, function (v) { return true; }),
-            zoomExtentFactor: new Setting(1.0, function (v) { return true; }),
-            zoomSpeed: new Setting(1.0, function (v) { return true; }),
-        };
-        if (settingsJSON) {
-            if ((!settingsJSON.clearAlpha || !settingsJSON.clearColor) && settingsJSON.backgroundColor && typeof settingsJSON.backgroundColor === 'string') {
-                settingsJSON.clearAlpha = settingsJSON.backgroundColor.substring(0, 8);
-                settingsJSON.clearColor = settingsJSON.backgroundColor.substring(8);
-            }
-            if (settingsJSON.defaultMaterialColor && Array.isArray(settingsJSON.defaultMaterialColor)) {
-                var temp = '#';
-                for (var i = 0; i < settingsJSON.defaultMaterialColor.length; i++)
-                    temp += Number(settingsJSON.defaultMaterialColor[i]).toString(16);
-                settingsJSON.defaultMaterialColor = temp;
-            }
-            _this._fromJSON(settingsJSON, _this._settings);
-        }
-        return _this;
-    }
-    // #endregion Constructors (1)
-    // #region Public Methods (2)
-    Settings.prototype.convertFromPreviousVersion = function (oldSettings) {
-        return this;
-    };
-    Settings.prototype.convertToPreviousVersion = function () {
-        return this;
-    };
-    return Settings;
-}(BaseSettings));
-
-//import typeChecks from "shapedivernodemodule-typechecks";
-var Settings$1 = /** @class */ (function (_super) {
-    tslib.__extends(Settings$1, _super);
-    // #endregion Properties (1)
-    // #region Constructors (1)
-    /**
-     *
-     * @param settingsObject a settings object that is a JSON representation of this SettingsObject
-     */
-    function Settings$1(settingsJSON) {
         var _this = _super.call(this) || this;
         _this._version = new SettingsVersion('2.0');
         _this._settings = {
@@ -553,7 +231,7 @@ var Settings$1 = /** @class */ (function (_super) {
     }
     // #endregion Constructors (1)
     // #region Public Methods (2)
-    Settings$1.prototype.convertFromPreviousVersion = function (settings) {
+    Settings.prototype.convertFromPreviousVersion = function (settings) {
         var oldSettings = settings.settings;
         this._settings.viewer.scene.render.clearAlpha.value = oldSettings.clearAlpha.value;
         this._settings.viewer.scene.render.clearColor.value = oldSettings.clearColor.value;
@@ -603,8 +281,8 @@ var Settings$1 = /** @class */ (function (_super) {
         this._settings.viewer.scene.camera.zoomExtentsFactor.value = oldSettings.zoomExtentFactor.value;
         return this;
     };
-    Settings$1.prototype.convertToPreviousVersion = function () {
-        var oldSettings = new Settings();
+    Settings.prototype.convertToPreviousVersion = function () {
+        var oldSettings = new OldSettings();
         oldSettings.settings.build_date.value = this._settings.build_date.value;
         oldSettings.settings.build_version.value = this._settings.build_version.value;
         oldSettings.settings.ambientOcclusion.value = this._settings.viewer.scene.render.ambientOcclusion.value;
@@ -652,70 +330,7 @@ var Settings$1 = /** @class */ (function (_super) {
         oldSettings.settings.zoomSpeed.value = this._settings.viewer.scene.camera.controls.orbit.zoomSpeed.value;
         return oldSettings;
     };
-    return Settings$1;
+    return Settings;
 }(BaseSettings));
-
-var SettingsConversion = /** @class */ (function () {
-    // #endregion Properties (2)
-    // #region Constructors (1)
-    function SettingsConversion() {
-        // #region Properties (2)
-        this._settingsVersions = [];
-        this._versions = {
-            '1.0': Settings,
-            '2.0': Settings$1
-        };
-        for (var _i = 0, _a = Object.keys(this._versions); _i < _a.length; _i++) {
-            var k = _a[_i];
-            this._settingsVersions.push(new this._versions[k]());
-        }
-    }
-    // #endregion Constructors (1)
-    // #region Public Methods (2)
-    SettingsConversion.prototype.convert = function (settingsJSON, version) {
-        var settings = this.createSettingsObject(settingsJSON);
-        var currentVersion = settings.version, requiredVersion = new SettingsVersion(version);
-        var indexCurrent = this._findVersionIndex(currentVersion);
-        var indexRequired = this._findVersionIndex(requiredVersion);
-        if (indexCurrent === -1 || indexRequired === -1)
-            return settings.toJSON();
-        var convertedSettings = settings;
-        if (indexCurrent < indexRequired) {
-            while (indexCurrent < indexRequired) {
-                indexCurrent += 1;
-                convertedSettings = new this._versions[this._settingsVersions[indexCurrent].version.toString()]().convertFromPreviousVersion(settings);
-            }
-        }
-        else if (indexCurrent > indexRequired) {
-            while (indexCurrent > indexRequired) {
-                indexCurrent -= 1;
-                convertedSettings = convertedSettings.convertToPreviousVersion();
-            }
-        }
-        return convertedSettings.toJSON();
-    };
-    SettingsConversion.prototype.createSettingsObject = function (settingsJSON) {
-        if (!settingsJSON.settings_version)
-            return new Settings(settingsJSON);
-        var version = new SettingsVersion(settingsJSON.settings_version);
-        return new this._versions[version.toString()](settingsJSON);
-    };
-    // #endregion Public Methods (2)
-    // #region Private Methods (1)
-    SettingsConversion.prototype._findVersionIndex = function (version) {
-        var v = new SettingsVersion(version.toString());
-        for (var i = 0; i < this._settingsVersions.length; i++)
-            if (this._settingsVersions[i].version.equalTo(v))
-                return i;
-        v.versionLevels[v.versionLevels.length - 1] = 0;
-        for (var i = 0; i < this._settingsVersions.length; i++)
-            if (this._settingsVersions[i].version.equalTo(v))
-                return i;
-        return -1;
-    };
-    return SettingsConversion;
-}());
-
-var ShapeDiverViewerSettings = { SettingsConversion: SettingsConversion, Settings_1_0: Settings, Settings_2_0: Settings$1 };
-
-exports.ShapeDiverViewerSettings = ShapeDiverViewerSettings;
+export { Settings };
+;
