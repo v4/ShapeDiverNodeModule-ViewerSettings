@@ -1,5 +1,5 @@
 {
-  "name": "shapediver-viewer-settings",
+  "name": "shapedivernodemodule-viewersettings",
   "version": "1.0.0",
   "description": "ShapeDiverNodeModule-ViewerSettings",
   "main": "./bundle.js",
