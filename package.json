@@ -1,13 +1,17 @@
 {
-  "name": "shapedivernodemodule-viewersettings",
+  "name": "shapediver-viewer-settings",
   "version": "1.0.0",
   "description": "ShapeDiverNodeModule-ViewerSettings",
-  "main": "./dist/main.js",
-  "type" : "commonjs",
+  "main": "./bundle.js",
+  "node" : "./bundle.cjs.js",
+  "module": "./bundle.umd.js",
+  "files": [
+    "dist"
+  ],
   "types": "./dist/main.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "rollup -c",
+    "watch": "rollup -cw"
   },
   "repository": {
     "type": "git",
@@ -17,6 +21,8 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "rollup": "^1.27.2",
+    "rollup-plugin-typescript3": "^1.1.2",
     "typescript": "^3.7.2"
   }
 }
