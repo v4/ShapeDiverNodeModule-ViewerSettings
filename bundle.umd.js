@@ -1,5 +1,8 @@
-var ShapediverViewerSettings = (function (exports) {
-    'use strict';
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (global = global || self, factory(global.ShapediverViewerSettings = {}));
+}(this, (function (exports) { 'use strict';
 
     var SettingsVersion = /** @class */ (function () {
         // #endregion Properties (1)
@@ -746,6 +749,6 @@ var ShapediverViewerSettings = (function (exports) {
 
     exports.ShapeDiverViewerSettings = ShapeDiverViewerSettings;
 
-    return exports;
+    Object.defineProperty(exports, '__esModule', { value: true });
 
-}({}));
+})));

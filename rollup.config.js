@@ -9,18 +9,18 @@ export default {
     // check output formats https://rollupjs.org/guide/en/
     // commonjs for node
     {
-      file: pkg.node,
+      file: pkg.main,
       format: "cjs"
     },
     // iife, browser bundle to be included via <script> tag
     {
-      file: pkg.module,
+      file: pkg.browser,
       format: "iife",
       name: "ShapediverViewerSettings"
     },
     // umd, suitable for browser and node
     {
-      file: pkg.main,
+      file: pkg.umd,
       format: "umd",
       name: "ShapediverViewerSettings"
     }

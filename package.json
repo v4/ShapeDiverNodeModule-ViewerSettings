@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "ShapeDiverNodeModule-ViewerSettings",
   "main": "./bundle.js",
-  "node": "./bundle.cjs.js",
-  "module": "./bundle.umd.js",
+  "browser": "./bundle.cjs.js",
+  "umd": "./bundle.umd.js",
   "types": "./dist/main.d.ts",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c && tsc",
     "watch": "rollup -cw"
   },
   "repository": {
