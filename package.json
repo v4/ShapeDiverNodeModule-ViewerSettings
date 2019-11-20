@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ShapeDiverNodeModule-ViewerSettings",
   "main": "./bundle.js",
-  "node" : "./bundle.cjs.js",
+  "node": "./bundle.cjs.js",
   "module": "./bundle.umd.js",
   "types": "./dist/main.d.ts",
   "scripts": {
@@ -19,7 +19,9 @@
   "dependencies": {},
   "devDependencies": {
     "rollup": "^1.27.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript3": "^1.1.2",
+    "tslib": "^1.10.0",
     "typescript": "^3.7.2"
   }
 }
