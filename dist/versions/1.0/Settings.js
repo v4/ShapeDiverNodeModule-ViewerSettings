@@ -31,6 +31,7 @@ var Settings = /** @class */ (function (_super) {
             settings_version: new Setting('1.0', function (v) { return true; }),
             ambientOcclusion: new Setting(true, function (v) { return true; }),
             autoRotateSpeed: new Setting(0.0, function (v) { return true; }),
+            backgroundColor: new Setting('0xffffffff', function (v) { return true; }),
             bumpAmplitude: new Setting(1.0, function (v) { return true; }),
             camera: new Setting({
                 position: new Setting({ x: 0, y: 0, z: 0 }, function (v) { return true; }),
@@ -52,7 +53,7 @@ var Settings = /** @class */ (function (_super) {
             defaultMaterialColor: new Setting('#d3d3d3', function (v) { return true; }),
             disablePan: new Setting(false, function (v) { return true; }),
             disableZoom: new Setting(false, function (v) { return true; }),
-            enableAutoRotate: new Setting(false, function (v) { return true; }),
+            enableAutoRotation: new Setting(false, function (v) { return true; }),
             enableRotation: new Setting(true, function (v) { return true; }),
             environmentMap: new Setting('none', function (v) { return true; }),
             environmentMapResolution: new Setting('1024', function (v) { return true; }),

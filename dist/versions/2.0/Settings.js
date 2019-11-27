@@ -261,7 +261,7 @@ var Settings = /** @class */ (function (_super) {
         this._settings.viewer.scene.camera.controls.orthographic.enablePan.value = !oldSettings.disablePan.value;
         this._settings.viewer.scene.camera.controls.orbit.enableZoom.value = !oldSettings.disableZoom.value;
         this._settings.viewer.scene.camera.controls.orthographic.enableZoom.value = !oldSettings.disableZoom.value;
-        this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value = oldSettings.enableAutoRotate.value;
+        this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value = oldSettings.enableAutoRotation.value;
         this._settings.viewer.scene.camera.controls.orbit.enableRotation.value = oldSettings.enableRotation.value;
         this._settings.viewer.scene.material.environmentMap.value = oldSettings.environmentMap.value;
         this._settings.viewer.scene.material.environmentMapResolution.value = oldSettings.environmentMapResolution.value;
@@ -308,7 +308,7 @@ var Settings = /** @class */ (function (_super) {
         oldSettings.settings.defaultMaterialColor.value = this._settings.defaultMaterial.color.value;
         oldSettings.settings.disablePan.value = !this._settings.viewer.scene.camera.controls.orbit.enablePan.value;
         oldSettings.settings.disableZoom.value = !this._settings.viewer.scene.camera.controls.orbit.enableZoom.value;
-        oldSettings.settings.enableAutoRotate.value = this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value;
+        oldSettings.settings.enableAutoRotation.value = this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value;
         oldSettings.settings.enableRotation.value = this._settings.viewer.scene.camera.controls.orbit.enableRotation.value;
         oldSettings.settings.environmentMap.value = this._settings.viewer.scene.material.environmentMap.value;
         oldSettings.settings.environmentMapResolution.value = this._settings.viewer.scene.material.environmentMapResolution.value;
@@ -328,6 +328,10 @@ var Settings = /** @class */ (function (_super) {
         oldSettings.settings.topView.value = this._settings.viewer.scene.camera.cameraTypes.active.value === 1;
         oldSettings.settings.zoomExtentFactor.value = this._settings.viewer.scene.camera.zoomExtentsFactor.value;
         oldSettings.settings.zoomSpeed.value = this._settings.viewer.scene.camera.controls.orbit.zoomSpeed.value;
+        // TODO compute backgroundColor (used by viewer v1) from clearAlpha and clearColor, requires tinycolor helper functionality
+        //let tc = TO_TINY_COLOR(this._settings.viewer.scene.render.clearColor.value);
+        //tc.setAlpha(this._settings.viewer.scene.render.clearAlpha.value);
+        //(oldSettings.settings.backgroundColor as ISetting<any>).value = '0x' + tc.toHex8();
         return oldSettings;
     };
     return Settings;

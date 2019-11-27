@@ -1,82 +1,6 @@
 var ShapediverViewerSettings = (function (exports) {
     'use strict';
 
-    var SettingsVersion = /** @class */ (function () {
-        // #endregion Properties (1)
-        // #region Constructors (1)
-        function SettingsVersion(version) {
-            if (version === void 0) { version = '1.0'; }
-            // #region Properties (1)
-            this._versionLevels = [];
-            var splitArray = version.split('.');
-            for (var n in splitArray)
-                this._versionLevels.push(+splitArray[n]);
-        }
-        Object.defineProperty(SettingsVersion.prototype, "versionLevels", {
-            // #endregion Constructors (1)
-            // #region Public Accessors (1)
-            get: function () {
-                return this._versionLevels;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        // #endregion Public Accessors (1)
-        // #region Public Methods (3)
-        SettingsVersion.prototype.equalTo = function (v) {
-            if (v.versionLevels.length !== this._versionLevels.length)
-                return false;
-            for (var i = 0; i < this._versionLevels.length; i++)
-                if (v.versionLevels[i] !== this._versionLevels[i])
-                    return false;
-            return true;
-        };
-        SettingsVersion.prototype.isLowerThan = function (v) {
-            for (var i = 0; i < this._versionLevels.length; i++) {
-                if (this._versionLevels[i] > v.versionLevels[i]) {
-                    return false;
-                }
-                else if (this._versionLevels[i] < v.versionLevels[i]) {
-                    return true;
-                }
-            }
-            return false;
-        };
-        SettingsVersion.prototype.toString = function () {
-            return this._versionLevels.join('.');
-        };
-        return SettingsVersion;
-    }());
-
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    /* global Reflect, Promise */
-
-    var extendStatics = function(d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
-
     var Setting = /** @class */ (function () {
         // #region Constructors (1)
         function Setting(_value, _type, _desc, _persistent) {
@@ -279,6 +203,86 @@ var ShapediverViewerSettings = (function (exports) {
         return BaseSettings;
     }());
 
+    
+
+    var SettingsVersion = /** @class */ (function () {
+        // #endregion Properties (1)
+        // #region Constructors (1)
+        function SettingsVersion(version) {
+            if (version === void 0) { version = '1.0'; }
+            // #region Properties (1)
+            this._versionLevels = [];
+            var splitArray = version.split('.');
+            for (var n in splitArray)
+                this._versionLevels.push(+splitArray[n]);
+        }
+        Object.defineProperty(SettingsVersion.prototype, "versionLevels", {
+            // #endregion Constructors (1)
+            // #region Public Accessors (1)
+            get: function () {
+                return this._versionLevels;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        // #endregion Public Accessors (1)
+        // #region Public Methods (3)
+        SettingsVersion.prototype.equalTo = function (v) {
+            if (v.versionLevels.length !== this._versionLevels.length)
+                return false;
+            for (var i = 0; i < this._versionLevels.length; i++)
+                if (v.versionLevels[i] !== this._versionLevels[i])
+                    return false;
+            return true;
+        };
+        SettingsVersion.prototype.isLowerThan = function (v) {
+            for (var i = 0; i < this._versionLevels.length; i++) {
+                if (this._versionLevels[i] > v.versionLevels[i]) {
+                    return false;
+                }
+                else if (this._versionLevels[i] < v.versionLevels[i]) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        SettingsVersion.prototype.toString = function () {
+            return this._versionLevels.join('.');
+        };
+        return SettingsVersion;
+    }());
+
+    
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
     var Settings = /** @class */ (function (_super) {
         __extends(Settings, _super);
         // #endregion Properties (1)
@@ -296,6 +300,7 @@ var ShapediverViewerSettings = (function (exports) {
                 settings_version: new Setting('1.0', function (v) { return true; }),
                 ambientOcclusion: new Setting(true, function (v) { return true; }),
                 autoRotateSpeed: new Setting(0.0, function (v) { return true; }),
+                backgroundColor: new Setting('0xffffffff', function (v) { return true; }),
                 bumpAmplitude: new Setting(1.0, function (v) { return true; }),
                 camera: new Setting({
                     position: new Setting({ x: 0, y: 0, z: 0 }, function (v) { return true; }),
@@ -317,7 +322,7 @@ var ShapediverViewerSettings = (function (exports) {
                 defaultMaterialColor: new Setting('#d3d3d3', function (v) { return true; }),
                 disablePan: new Setting(false, function (v) { return true; }),
                 disableZoom: new Setting(false, function (v) { return true; }),
-                enableAutoRotate: new Setting(false, function (v) { return true; }),
+                enableAutoRotation: new Setting(false, function (v) { return true; }),
                 enableRotation: new Setting(true, function (v) { return true; }),
                 environmentMap: new Setting('none', function (v) { return true; }),
                 environmentMapResolution: new Setting('1024', function (v) { return true; }),
@@ -362,6 +367,8 @@ var ShapediverViewerSettings = (function (exports) {
         };
         return Settings;
     }(BaseSettings));
+
+    
 
     //import typeChecks from "shapedivernodemodule-typechecks";
     var Settings$1 = /** @class */ (function (_super) {
@@ -609,7 +616,7 @@ var ShapediverViewerSettings = (function (exports) {
             this._settings.viewer.scene.camera.controls.orthographic.enablePan.value = !oldSettings.disablePan.value;
             this._settings.viewer.scene.camera.controls.orbit.enableZoom.value = !oldSettings.disableZoom.value;
             this._settings.viewer.scene.camera.controls.orthographic.enableZoom.value = !oldSettings.disableZoom.value;
-            this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value = oldSettings.enableAutoRotate.value;
+            this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value = oldSettings.enableAutoRotation.value;
             this._settings.viewer.scene.camera.controls.orbit.enableRotation.value = oldSettings.enableRotation.value;
             this._settings.viewer.scene.material.environmentMap.value = oldSettings.environmentMap.value;
             this._settings.viewer.scene.material.environmentMapResolution.value = oldSettings.environmentMapResolution.value;
@@ -656,7 +663,7 @@ var ShapediverViewerSettings = (function (exports) {
             oldSettings.settings.defaultMaterialColor.value = this._settings.defaultMaterial.color.value;
             oldSettings.settings.disablePan.value = !this._settings.viewer.scene.camera.controls.orbit.enablePan.value;
             oldSettings.settings.disableZoom.value = !this._settings.viewer.scene.camera.controls.orbit.enableZoom.value;
-            oldSettings.settings.enableAutoRotate.value = this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value;
+            oldSettings.settings.enableAutoRotation.value = this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value;
             oldSettings.settings.enableRotation.value = this._settings.viewer.scene.camera.controls.orbit.enableRotation.value;
             oldSettings.settings.environmentMap.value = this._settings.viewer.scene.material.environmentMap.value;
             oldSettings.settings.environmentMapResolution.value = this._settings.viewer.scene.material.environmentMapResolution.value;
@@ -676,6 +683,10 @@ var ShapediverViewerSettings = (function (exports) {
             oldSettings.settings.topView.value = this._settings.viewer.scene.camera.cameraTypes.active.value === 1;
             oldSettings.settings.zoomExtentFactor.value = this._settings.viewer.scene.camera.zoomExtentsFactor.value;
             oldSettings.settings.zoomSpeed.value = this._settings.viewer.scene.camera.controls.orbit.zoomSpeed.value;
+            // TODO compute backgroundColor (used by viewer v1) from clearAlpha and clearColor, requires tinycolor helper functionality
+            //let tc = TO_TINY_COLOR(this._settings.viewer.scene.render.clearColor.value);
+            //tc.setAlpha(this._settings.viewer.scene.render.clearAlpha.value);
+            //(oldSettings.settings.backgroundColor as ISetting<any>).value = '0x' + tc.toHex8();
             return oldSettings;
         };
         return Settings$1;

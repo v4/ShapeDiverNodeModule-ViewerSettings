@@ -268,7 +268,7 @@ export class Settings extends BaseSettings {
         (this._settings.viewer.scene.camera.controls.orthographic.enablePan as ISetting<any>).value = !oldSettings.disablePan.value;
         (this._settings.viewer.scene.camera.controls.orbit.enableZoom as ISetting<any>).value = !oldSettings.disableZoom.value;
         (this._settings.viewer.scene.camera.controls.orthographic.enableZoom as ISetting<any>).value = !oldSettings.disableZoom.value;
-        (this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation as ISetting<any>).value = oldSettings.enableAutoRotate.value;
+        (this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation as ISetting<any>).value = oldSettings.enableAutoRotation.value;
         (this._settings.viewer.scene.camera.controls.orbit.enableRotation as ISetting<any>).value = oldSettings.enableRotation.value;
         (this._settings.viewer.scene.material.environmentMap as ISetting<any>).value = oldSettings.environmentMap.value;
         (this._settings.viewer.scene.material.environmentMapResolution as ISetting<any>).value = oldSettings.environmentMapResolution.value;
@@ -319,7 +319,7 @@ export class Settings extends BaseSettings {
         (oldSettings.settings.defaultMaterialColor as ISetting<any>).value = this._settings.defaultMaterial.color.value;
         (oldSettings.settings.disablePan as ISetting<any>).value = !this._settings.viewer.scene.camera.controls.orbit.enablePan.value;
         (oldSettings.settings.disableZoom as ISetting<any>).value = !this._settings.viewer.scene.camera.controls.orbit.enableZoom.value;
-        (oldSettings.settings.enableAutoRotate as ISetting<any>).value = this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value;
+        (oldSettings.settings.enableAutoRotation as ISetting<any>).value = this._settings.viewer.scene.camera.controls.orbit.enableAutoRotation.value;
         (oldSettings.settings.enableRotation as ISetting<any>).value = this._settings.viewer.scene.camera.controls.orbit.enableRotation.value;
         (oldSettings.settings.environmentMap as ISetting<any>).value = this._settings.viewer.scene.material.environmentMap.value;
         (oldSettings.settings.environmentMapResolution as ISetting<any>).value = this._settings.viewer.scene.material.environmentMapResolution.value;
@@ -339,6 +339,10 @@ export class Settings extends BaseSettings {
         (oldSettings.settings.topView as ISetting<any>).value = this._settings.viewer.scene.camera.cameraTypes.active.value === 1;
         (oldSettings.settings.zoomExtentFactor as ISetting<any>).value = this._settings.viewer.scene.camera.zoomExtentsFactor.value;
         (oldSettings.settings.zoomSpeed as ISetting<any>).value = this._settings.viewer.scene.camera.controls.orbit.zoomSpeed.value;
+        // TODO compute backgroundColor (used by viewer v1) from clearAlpha and clearColor, requires tinycolor helper functionality
+        //let tc = TO_TINY_COLOR(this._settings.viewer.scene.render.clearColor.value);
+        //tc.setAlpha(this._settings.viewer.scene.render.clearAlpha.value);
+        //(oldSettings.settings.backgroundColor as ISetting<any>).value = '0x' + tc.toHex8();
 
         return oldSettings;
     }

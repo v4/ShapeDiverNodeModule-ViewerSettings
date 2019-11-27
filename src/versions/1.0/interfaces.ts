@@ -21,7 +21,7 @@ export interface ISettingsObject extends IGlobalSettingsObject {
     defaultMaterialColor: ISetting<string>,
     disablePan: ISetting<boolean>,
     disableZoom: ISetting<boolean>,
-    enableAutoRotate: ISetting<boolean>,
+    enableAutoRotation: ISetting<boolean>,
     enableRotation: ISetting<boolean>,
     environmentMap: ISetting<string>,
     environmentMapResolution: ISetting<string>,
