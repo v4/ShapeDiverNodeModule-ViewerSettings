@@ -753,9 +753,9 @@ var ShapediverViewerSettings = (function (exports) {
         return SettingsConversion;
     }());
 
-    var ShapeDiverViewerSettings = { SettingsConversion: SettingsConversion, Settings_1_0: Settings, Settings_2_0: Settings$1 };
-
-    exports.ShapeDiverViewerSettings = ShapeDiverViewerSettings;
+    exports.SettingsConversion = SettingsConversion;
+    exports.Settings_1_0 = Settings;
+    exports.Settings_2_0 = Settings$1;
 
     return exports;
 

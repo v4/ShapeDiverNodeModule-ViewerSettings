@@ -111,8 +111,4 @@ declare class SettingsConversion {
 }
 declare class Settings_1_0 extends Settings {
 }
-export declare const ShapeDiverViewerSettings: {
-    SettingsConversion: typeof SettingsConversion;
-    Settings_1_0: typeof Settings_1_0;
-    Settings_2_0: typeof Settings_2_0;
-};
+export { SettingsConversion, Settings_1_0, Settings_2_0 };

@@ -1,8 +1,6 @@
 import { SettingsConversion } from "./SettingsConversion";
 import { Settings as Settings_1_0 } from "./versions/1.0/Settings";
 import { Settings as Settings_2_0 } from "./versions/2.0/Settings";
-export declare const ShapeDiverViewerSettings: {
-    SettingsConversion: typeof SettingsConversion;
-    Settings_1_0: typeof Settings_1_0;
-    Settings_2_0: typeof Settings_2_0;
-};
+export { SettingsConversion };
+export { Settings_1_0 };
+export { Settings_2_0 };

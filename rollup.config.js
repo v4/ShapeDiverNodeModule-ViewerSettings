@@ -4,7 +4,6 @@ import pkg from "./package.json";
 
 export default {
   input: "src/main.ts",
-  entry: "src/main.ts",
   output: [
     // check output formats https://rollupjs.org/guide/en/
     // commonjs for node
