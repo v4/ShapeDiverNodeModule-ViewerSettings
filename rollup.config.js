@@ -1,4 +1,4 @@
-import typescript from "rollup-plugin-typescript3";
+import typescript from "rollup-plugin-ts";
 import nodeResolve from "rollup-plugin-node-resolve";
 import pkg from "./package.json";
 
