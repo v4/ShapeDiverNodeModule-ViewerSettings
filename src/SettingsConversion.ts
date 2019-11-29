@@ -26,8 +26,8 @@ export class SettingsConversion {
 
     private _settingsVersions: ISettings[] = [];
     private _versions: ISettingsDictionary<any> = {
-        '1.0': Settings_1_0,
-        '2.0': Settings_2_0
+        '1.0.0': Settings_1_0,
+        '2.0.0': Settings_2_0
     }
 
     private _mapViewerVersionSettingsVersion: IViewerVersionSettingsVersion[] = [
