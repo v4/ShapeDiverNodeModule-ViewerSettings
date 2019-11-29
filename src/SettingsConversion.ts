@@ -61,7 +61,8 @@ export class SettingsConversion {
         if (indexCurrent < indexRequired) {
             while(indexCurrent < indexRequired) {
                 indexCurrent+=1;
-                convertedSettings = new this._versions[this._settingsVersions[indexCurrent].version.toString()]().convertFromPreviousVersion(settings);
+                let currentVersion = this._versions[this._settingsVersions[indexCurrent].version.toString()];
+                convertedSettings = (new currentVersion()).convertFromPreviousVersion(settings);
             }
         } else if (indexCurrent > indexRequired) {
             while (indexCurrent > indexRequired) {
