@@ -17,8 +17,8 @@ var SettingsConversion = /** @class */ (function () {
         // #region Properties (2)
         this._settingsVersions = [];
         this._versions = {
-            '1.0': Settings_1_0,
-            '2.0': Settings_2_0
+            '1.0.0': Settings_1_0,
+            '2.0.0': Settings_2_0
         };
         this._mapViewerVersionSettingsVersion = [
             new ViewerVersionSettingsVersion('2.19.0', '2.0'),
