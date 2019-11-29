@@ -23,7 +23,7 @@ export class Settings extends BaseSettings {
         this._settings = {
             build_date: new Setting('', 'string', '', false),
             build_version: new Setting('', 'string', '', false),
-            settings_version: new Setting('2.0', 'string', '', true),
+            settings_version: new Setting('1.0', 'string', '', true),
     
             ambientOcclusion: new Setting(true, (v:any) => true),
             autoRotateSpeed: new Setting(0.0, (v:any) => true),
