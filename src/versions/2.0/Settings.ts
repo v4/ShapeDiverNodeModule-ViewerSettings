@@ -26,7 +26,7 @@ export class Settings extends BaseSettings {
         this._settings = {
             build_date: new Setting('', 'string', '', false),
             build_version: new Setting('', 'string', '', false),
-            settings_version: new Setting('2.0', 'string', '', false),
+            settings_version: new Setting('2.0', 'string', '', true),
 
             ar: {
                 enableCameraSync: new Setting(false, 'boolean', 'Enable / disable synchronisation of the camera with AR tracking information. Enabling this will disable the orbit controls.', false),
@@ -143,32 +143,38 @@ export class Settings extends BaseSettings {
                                         cube: new Setting({
                                             min: new Setting({ x: -Infinity, y: -Infinity, z: -Infinity }, 'vector3any', 'Restriction of the camera position inside a cube, minimum corner of the cube'),
                                             max: new Setting({ x: Infinity, y: Infinity, z: Infinity }, 'vector3any', 'Restriction of the camera position inside a cube, maximum corner of the cube'),
-                                        }, (value: { min: { x: 0, y: 0, z: 0 }, max: { x: 0, y: 0, z: 0 } }) => true, 'Restriction of the camera position inside a cube, minimum and maximum corner of the cube'),
+                                        }, (value: { min: { x: 0, y: 0, z: 0 }, max: { x: 0, y: 0, z: 0 } }) => true, 'Restriction of the camera position inside a cube, minimum and maximum corner of the cube',
+                                        false),
                                         sphere: new Setting({
                                             center: new Setting({ x: 0, y: 0, z: 0 }, 'vector3any', 'Restriction of the camera position inside a sphere, center of the sphere'),
                                             radius: new Setting(Infinity, 'notnegative', 'Restriction of the camera position inside a sphere, radius of the sphere'),
-                                        }, (value: { center: { x: 0, y: 0, z: 0 }, radius: number }) => true, 'Restriction of the camera position inside a sphere, center and radius of the sphere'),
+                                        }, (value: { center: { x: 0, y: 0, z: 0 }, radius: number }) => true, 'Restriction of the camera position inside a sphere, center and radius of the sphere', 
+                                        false),
                                     },
                                     target: {
                                         cube: new Setting({
                                             min: new Setting({ x: -Infinity, y: -Infinity, z: -Infinity }, 'vector3any', 'Restriction of the camera target inside a cube, minimum corner of the cube'),
                                             max: new Setting({ x: Infinity, y: Infinity, z: Infinity }, 'vector3any', 'Restriction of the camera target inside a cube, maximum corner of the cube'),
-                                        }, (value: { min: { x: 0, y: 0, z: 0 }, max: { x: 0, y: 0, z: 0 } }) => true, 'Restriction of the camera target inside a cube, minimum and maximum corner of the cube'),
+                                        }, (value: { min: { x: 0, y: 0, z: 0 }, max: { x: 0, y: 0, z: 0 } }) => true, 'Restriction of the camera target inside a cube, minimum and maximum corner of the cube', 
+                                        false),
                                         sphere: new Setting({
                                             center: new Setting({ x: 0, y: 0, z: 0 }, 'vector3any', 'Restriction of the camera target inside a sphere, center of the sphere'),
                                             radius: new Setting(Infinity, 'notnegative', 'Restriction of the camera target inside a sphere, radius of the sphere'),
-                                        }, (value: { center: { x: 0, y: 0, z: 0 }, radius: number }) => true, 'Restriction of the camera target inside a sphere, center and radius of the sphere'),
+                                        }, (value: { center: { x: 0, y: 0, z: 0 }, radius: number }) => true, 'Restriction of the camera target inside a sphere, center and radius of the sphere', 
+                                        false),
                                     },
                                     rotation: new Setting({
                                         minPolarAngle: new Setting(0, (value: number) =>true, 'Minimum polar angle of the camera position with respect to the camera target, unit degree, interval [0,180]'),
                                         maxPolarAngle: new Setting(180, (value: number) => true, 'Maximum polar angle of the camera position with respect to the camera target, unit degree, interval [0,180]'),
                                         minAzimuthAngle: new Setting(-Infinity, 'number', 'Minimum azimuth angle of the camera position with respect to the camera target, unit degree, interval [-180,180]'),
                                         maxAzimuthAngle: new Setting(Infinity, 'number', 'Maximum azimuth angle of the camera position with respect to the camera target, unit degree, interval [-180,180]'),
-                                    }, (value: { minPolarAngle: number, maxPolarAngle: number, minAzimuthAngle: number, maxAzimuthAngle: number }) => true, 'Minimum and maximum polar and azimuth angle of the camera position with respect to the camera target, unit degree'),
+                                    }, (value: { minPolarAngle: number, maxPolarAngle: number, minAzimuthAngle: number, maxAzimuthAngle: number }) => true, 'Minimum and maximum polar and azimuth angle of the camera position with respect to the camera target, unit degree', 
+                                    false),
                                     zoom: new Setting({
                                         minDistance: new Setting(0, 'notnegative', 'Minimum distance between camera position and target'),
                                         maxDistance: new Setting(Infinity, 'notnegative', 'Maximum distance between camera position and target'),
-                                    }, (value: { minDistance: number, maxDistance: number }) => true, 'Minimum and maximum distance between camera position and target'),
+                                    }, (value: { minDistance: number, maxDistance: number }) => true, 'Minimum and maximum distance between camera position and target', 
+                                    false),
                                 },
                                 rotationSpeed: new Setting(0.5, 'factor', 'Speed of camera rotation'),
                                 panSpeed: new Setting(0.5, 'factor', 'Speed of panning'),

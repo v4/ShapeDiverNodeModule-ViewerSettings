@@ -28,7 +28,7 @@ var Settings = /** @class */ (function (_super) {
         _this._settings = {
             build_date: new Setting('', function (v) { return true; }),
             build_version: new Setting('', function (v) { return true; }),
-            settings_version: new Setting('1.0', function (v) { return true; }),
+            settings_version: new Setting('1.0', function (v) { return true; }, '', true),
             ambientOcclusion: new Setting(true, function (v) { return true; }),
             autoRotateSpeed: new Setting(0.0, function (v) { return true; }),
             backgroundColor: new Setting('0xffffffff', function (v) { return true; }),
