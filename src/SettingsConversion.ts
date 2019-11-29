@@ -62,7 +62,7 @@ export class SettingsConversion {
             while(indexCurrent < indexRequired) {
                 indexCurrent+=1;
                 let currentVersion = this._versions[this._settingsVersions[indexCurrent].version.toString()];
-                convertedSettings = (new currentVersion()).convertFromPreviousVersion(settings);
+                convertedSettings = (new currentVersion()).convertFromPreviousVersion(convertedSettings);
             }
         } else if (indexCurrent > indexRequired) {
             while (indexCurrent > indexRequired) {
@@ -89,7 +89,7 @@ export class SettingsConversion {
             }
         }
 
-        return this._mapViewerVersionSettingsVersion[this._mapViewerVersionSettingsVersion.length-1].settings_version.toString();
+        return '1.0';
     }
 
     // #endregion Public Methods (2)

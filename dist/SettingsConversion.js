@@ -42,7 +42,7 @@ var SettingsConversion = /** @class */ (function () {
             while (indexCurrent < indexRequired) {
                 indexCurrent += 1;
                 var currentVersion_1 = this._versions[this._settingsVersions[indexCurrent].version.toString()];
-                convertedSettings = (new currentVersion_1()).convertFromPreviousVersion(settings);
+                convertedSettings = (new currentVersion_1()).convertFromPreviousVersion(convertedSettings);
             }
         }
         else if (indexCurrent > indexRequired) {
@@ -67,7 +67,7 @@ var SettingsConversion = /** @class */ (function () {
                 return kvp.settings_version.toString();
             }
         }
-        return this._mapViewerVersionSettingsVersion[this._mapViewerVersionSettingsVersion.length - 1].settings_version.toString();
+        return '1.0';
     };
     // #endregion Public Methods (2)
     // #region Private Methods (1)
