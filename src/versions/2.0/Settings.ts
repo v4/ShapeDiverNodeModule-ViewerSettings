@@ -293,6 +293,8 @@ export class Settings extends BaseSettings {
         if(oldSettings.topView.value)
             (this._settings.viewer.scene.camera.cameraTypes.active as ISetting<any>).value = 1;
         (this._settings.viewer.scene.camera.zoomExtentsFactor as ISetting<any>).value = oldSettings.zoomExtentFactor.value;
+        (this._settings.viewer.scene.camera.controls.orbit.zoomSpeed as ISetting<any>).value = oldSettings.zoomSpeed.value;
+        (this._settings.viewer.scene.camera.controls.orthographic.zoomSpeed as ISetting<any>).value = oldSettings.zoomSpeed.value;
 
         return this;
     }

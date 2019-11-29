@@ -636,6 +636,8 @@ var ShapediverViewerSettings = (function (exports) {
             if (oldSettings.topView.value)
                 this._settings.viewer.scene.camera.cameraTypes.active.value = 1;
             this._settings.viewer.scene.camera.zoomExtentsFactor.value = oldSettings.zoomExtentFactor.value;
+            this._settings.viewer.scene.camera.controls.orbit.zoomSpeed.value = oldSettings.zoomSpeed.value;
+            this._settings.viewer.scene.camera.controls.orthographic.zoomSpeed.value = oldSettings.zoomSpeed.value;
             return this;
         };
         Settings$1.prototype.convertToPreviousVersion = function () {
