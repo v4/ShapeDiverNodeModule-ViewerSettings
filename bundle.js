@@ -114,6 +114,7 @@ var BaseSettings = /** @class */ (function () {
                     this._fromJSON(settingsJSON[s], iterable[s].value);
                 }
                 else {
+                    // TODO SS-1484 do type checks
                     if (settingsJSON[s] !== undefined)
                         iterable[s].value = settingsJSON[s];
                 }
@@ -293,9 +294,9 @@ var Settings = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this._version = new SettingsVersion('1.0');
         _this._settings = {
-            build_date: new Setting('', function (v) { return true; }),
-            build_version: new Setting('', function (v) { return true; }),
-            settings_version: new Setting('1.0', function (v) { return true; }, '', true),
+            build_date: new Setting('', 'string', '', false),
+            build_version: new Setting('', 'string', '', false),
+            settings_version: new Setting('2.0', 'string', '', true),
             ambientOcclusion: new Setting(true, function (v) { return true; }),
             autoRotateSpeed: new Setting(0.0, function (v) { return true; }),
             backgroundColor: new Setting('0xffffffff', function (v) { return true; }),

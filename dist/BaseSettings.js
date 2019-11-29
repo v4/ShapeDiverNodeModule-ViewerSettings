@@ -66,6 +66,7 @@ var BaseSettings = /** @class */ (function () {
                     this._fromJSON(settingsJSON[s], iterable[s].value);
                 }
                 else {
+                    // TODO SS-1484 do type checks
                     if (settingsJSON[s] !== undefined)
                         iterable[s].value = settingsJSON[s];
                 }

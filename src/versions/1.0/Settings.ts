@@ -21,9 +21,9 @@ export class Settings extends BaseSettings {
         super();
         this._version = new SettingsVersion('1.0');
         this._settings = {
-            build_date: new Setting('', (v:any) => true),
-            build_version: new Setting('', (v:any) => true),
-            settings_version: new Setting('1.0', (v:any) => true, '', true),
+            build_date: new Setting('', 'string', '', false),
+            build_version: new Setting('', 'string', '', false),
+            settings_version: new Setting('2.0', 'string', '', true),
     
             ambientOcclusion: new Setting(true, (v:any) => true),
             autoRotateSpeed: new Setting(0.0, (v:any) => true),
