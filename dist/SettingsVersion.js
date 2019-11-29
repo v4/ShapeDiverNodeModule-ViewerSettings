@@ -2,12 +2,13 @@ var SettingsVersion = /** @class */ (function () {
     // #endregion Properties (1)
     // #region Constructors (1)
     function SettingsVersion(version) {
-        if (version === void 0) { version = '1.0'; }
+        if (version === void 0) { version = ''; }
         // #region Properties (1)
-        this._versionLevels = [];
+        this._versionLevels = [1, 0, 0];
         var splitArray = version.split('.');
-        for (var n in splitArray)
-            this._versionLevels.push(+splitArray[n]);
+        for (var i = 0, len = Math.min(splitArray.length, this._versionLevels.length); i < len; i++) {
+            this._versionLevels[i] = +splitArray[i];
+        }
     }
     Object.defineProperty(SettingsVersion.prototype, "versionLevels", {
         // #endregion Constructors (1)

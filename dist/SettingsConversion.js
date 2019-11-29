@@ -1,6 +1,15 @@
 import { SettingsVersion } from "./SettingsVersion";
 import { Settings as Settings_1_0 } from "./versions/1.0/Settings";
 import { Settings as Settings_2_0 } from "./versions/2.0/Settings";
+var ViewerVersionSettingsVersion = /** @class */ (function () {
+    // #endregion Properties (2)
+    // #region Constructors (1)
+    function ViewerVersionSettingsVersion(viewerVersion, settingsVersion) {
+        this.viewer_version = new SettingsVersion(viewerVersion);
+        this.settings_version = new SettingsVersion(settingsVersion);
+    }
+    return ViewerVersionSettingsVersion;
+}());
 var SettingsConversion = /** @class */ (function () {
     // #endregion Properties (2)
     // #region Constructors (1)
@@ -11,6 +20,9 @@ var SettingsConversion = /** @class */ (function () {
             '1.0': Settings_1_0,
             '2.0': Settings_2_0
         };
+        this._mapViewerVersionSettingsVersion = [
+            new ViewerVersionSettingsVersion('2.19.0', '2.0'),
+        ];
         for (var _i = 0, _a = Object.keys(this._versions); _i < _a.length; _i++) {
             var k = _a[_i];
             this._settingsVersions.push(new this._versions[k]());
@@ -45,6 +57,16 @@ var SettingsConversion = /** @class */ (function () {
             return new Settings_1_0(settingsJSON);
         var version = new SettingsVersion(settingsJSON.settings_version);
         return new this._versions[version.toString()](settingsJSON);
+    };
+    SettingsConversion.prototype.mapViewerVersionToSettingsVersion = function (versionString) {
+        var version = new SettingsVersion(versionString || '0.0.0');
+        for (var _i = 0, _a = this._mapViewerVersionSettingsVersion; _i < _a.length; _i++) {
+            var kvp = _a[_i];
+            if (kvp.viewer_version.isLowerThan(version) || kvp.viewer_version.equalTo(version)) {
+                return kvp.settings_version.toString();
+            }
+        }
+        return this._mapViewerVersionSettingsVersion[this._mapViewerVersionSettingsVersion.length - 1].settings_version.toString();
     };
     // #endregion Public Methods (2)
     // #region Private Methods (1)

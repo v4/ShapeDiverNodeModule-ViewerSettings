@@ -209,12 +209,13 @@ var ShapediverViewerSettings = (function (exports) {
         // #endregion Properties (1)
         // #region Constructors (1)
         function SettingsVersion(version) {
-            if (version === void 0) { version = '1.0'; }
+            if (version === void 0) { version = ''; }
             // #region Properties (1)
-            this._versionLevels = [];
+            this._versionLevels = [1, 0, 0];
             var splitArray = version.split('.');
-            for (var n in splitArray)
-                this._versionLevels.push(+splitArray[n]);
+            for (var i = 0, len = Math.min(splitArray.length, this._versionLevels.length); i < len; i++) {
+                this._versionLevels[i] = +splitArray[i];
+            }
         }
         Object.defineProperty(SettingsVersion.prototype, "versionLevels", {
             // #endregion Constructors (1)
@@ -692,6 +693,15 @@ var ShapediverViewerSettings = (function (exports) {
         return Settings$1;
     }(BaseSettings));
 
+    var ViewerVersionSettingsVersion = /** @class */ (function () {
+        // #endregion Properties (2)
+        // #region Constructors (1)
+        function ViewerVersionSettingsVersion(viewerVersion, settingsVersion) {
+            this.viewer_version = new SettingsVersion(viewerVersion);
+            this.settings_version = new SettingsVersion(settingsVersion);
+        }
+        return ViewerVersionSettingsVersion;
+    }());
     var SettingsConversion = /** @class */ (function () {
         // #endregion Properties (2)
         // #region Constructors (1)
@@ -702,6 +712,9 @@ var ShapediverViewerSettings = (function (exports) {
                 '1.0': Settings,
                 '2.0': Settings$1
             };
+            this._mapViewerVersionSettingsVersion = [
+                new ViewerVersionSettingsVersion('2.19.0', '2.0'),
+            ];
             for (var _i = 0, _a = Object.keys(this._versions); _i < _a.length; _i++) {
                 var k = _a[_i];
                 this._settingsVersions.push(new this._versions[k]());
@@ -736,6 +749,16 @@ var ShapediverViewerSettings = (function (exports) {
                 return new Settings(settingsJSON);
             var version = new SettingsVersion(settingsJSON.settings_version);
             return new this._versions[version.toString()](settingsJSON);
+        };
+        SettingsConversion.prototype.mapViewerVersionToSettingsVersion = function (versionString) {
+            var version = new SettingsVersion(versionString || '0.0.0');
+            for (var _i = 0, _a = this._mapViewerVersionSettingsVersion; _i < _a.length; _i++) {
+                var kvp = _a[_i];
+                if (kvp.viewer_version.isLowerThan(version) || kvp.viewer_version.equalTo(version)) {
+                    return kvp.settings_version.toString();
+                }
+            }
+            return this._mapViewerVersionSettingsVersion[this._mapViewerVersionSettingsVersion.length - 1].settings_version.toString();
         };
         // #endregion Public Methods (2)
         // #region Private Methods (1)

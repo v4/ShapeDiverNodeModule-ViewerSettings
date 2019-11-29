@@ -1,7 +1,25 @@
 import { SettingsVersion } from "./SettingsVersion";
-import { ISettings, ISettingsVersion, ISettingsDictionary } from "./interfaces/interfaces";
+import { ISettings, ISettingsVersion, ISettingsDictionary, IViewerVersionSettingsVersion } from "./interfaces/interfaces";
 import { Settings as Settings_1_0 } from "./versions/1.0/Settings";
 import { Settings as Settings_2_0 } from "./versions/2.0/Settings";
+
+class ViewerVersionSettingsVersion implements IViewerVersionSettingsVersion {
+    // #region Properties (2)
+
+    viewer_version: ISettingsVersion;    
+    settings_version: ISettingsVersion;
+
+    // #endregion Properties (2)
+
+    // #region Constructors (1)
+
+    constructor(viewerVersion: string, settingsVersion: string) {
+        this.viewer_version = new SettingsVersion(viewerVersion);
+        this.settings_version = new SettingsVersion(settingsVersion);
+    }
+
+    // #endregion Constructors (1)
+}
 
 export class SettingsConversion {
     // #region Properties (2)
@@ -11,6 +29,10 @@ export class SettingsConversion {
         '1.0': Settings_1_0,
         '2.0': Settings_2_0
     }
+
+    private _mapViewerVersionSettingsVersion: IViewerVersionSettingsVersion[] = [
+        new ViewerVersionSettingsVersion('2.19.0', '2.0'), // TODO SS-1394 change to 2.18.0 after testing
+    ]
 
     // #endregion Properties (2)
 
@@ -55,6 +77,18 @@ export class SettingsConversion {
     
         let version = new SettingsVersion(settingsJSON.settings_version);
         return new this._versions[version.toString()](settingsJSON);
+    }
+
+    public mapViewerVersionToSettingsVersion(versionString: string): string {
+        let version = new SettingsVersion(versionString || '0.0.0');
+
+        for (let kvp of this._mapViewerVersionSettingsVersion) {
+            if ( kvp.viewer_version.isLowerThan(version) || kvp.viewer_version.equalTo(version) ) {
+                return kvp.settings_version.toString();
+            }
+        }
+
+        return this._mapViewerVersionSettingsVersion[this._mapViewerVersionSettingsVersion.length-1].settings_version.toString();
     }
 
     // #endregion Public Methods (2)

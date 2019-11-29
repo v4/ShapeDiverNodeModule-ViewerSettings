@@ -78,3 +78,12 @@ export interface IGlobalSettingsObject {
 
   // #endregion Indexes (1)
 }
+
+export interface IViewerVersionSettingsVersion {
+  // #region Properties (3)
+
+  viewer_version: ISettingsVersion;
+  settings_version: ISettingsVersion;
+
+  // #endregion Properties (3)
+}

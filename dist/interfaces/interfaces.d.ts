@@ -33,3 +33,7 @@ export interface IGlobalSettingsObject {
     settings_version: ISetting<string>;
     [key: string]: ISetting<any> | IBaseSettingsObject;
 }
+export interface IViewerVersionSettingsVersion {
+    viewer_version: ISettingsVersion;
+    settings_version: ISettingsVersion;
+}

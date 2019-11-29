@@ -3,16 +3,17 @@ import { ISettingsVersion } from "./interfaces/interfaces";
 export class SettingsVersion implements ISettingsVersion {
     // #region Properties (1)
 
-    private _versionLevels: number[] = [];
+    private _versionLevels: number[] = [1,0,0];
 
     // #endregion Properties (1)
 
     // #region Constructors (1)
 
-    constructor(version: string = '1.0') {
+    constructor(version: string = '') {
         let splitArray = version.split('.');
-        for (let n in splitArray) 
-            this._versionLevels.push(+splitArray[n]);
+        for (let i = 0, len = Math.min(splitArray.length,this._versionLevels.length); i < len; i++) {
+            this._versionLevels[i] = +splitArray[i];
+        }
     }
 
     // #endregion Constructors (1)
