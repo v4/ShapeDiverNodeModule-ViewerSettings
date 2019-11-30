@@ -268,8 +268,8 @@ export class Settings extends BaseSettings {
         (this._settings.viewer.commitParameters as ISetting<any>).value = oldSettings.commitParameters.value;
         (this._settings.viewer.scene.camera.controls.orbit.damping as ISetting<any>).value = oldSettings.controlDamping.value;
         (this._settings.viewer.scene.camera.controls.orthographic.damping as ISetting<any>).value = oldSettings.controlDamping.value;
-        (this._settings.parameters.controlNames as ISetting<any>).value = oldSettings.controlNames.value;
-        (this._settings.parameters.controlOrder as ISetting<any>).value = oldSettings.controlOrder.value;
+            (this._settings.parameters.controlNames as ISetting<any>).value = oldSettings.controlNames.value;
+            (this._settings.parameters.controlOrder as ISetting<any>).value = oldSettings.controlOrder.value;
         (this._settings.viewer.scene.camera.controls.orbit.enablePan as ISetting<any>).value = !oldSettings.disablePan.value;
         (this._settings.viewer.scene.camera.controls.orthographic.enablePan as ISetting<any>).value = !oldSettings.disablePan.value;
         (this._settings.viewer.scene.camera.controls.orbit.enableZoom as ISetting<any>).value = !oldSettings.disableZoom.value;
@@ -322,8 +322,12 @@ export class Settings extends BaseSettings {
         (oldSettings.settings.clearColor as ISetting<any>).value = this._settings.viewer.scene.render.clearColor.value;
         (oldSettings.settings.commitParameters as ISetting<any>).value = this._settings.viewer.commitParameters.value;
         (oldSettings.settings.controlDamping as ISetting<any>).value = this._settings.viewer.scene.camera.controls.orbit.damping.value;
-        (oldSettings.settings.controlNames as ISetting<any>).value = this._settings.parameters.controlNames.value;
-        (oldSettings.settings.controlOrder as ISetting<any>).value = this._settings.parameters.controlOrder.value;
+        if (this._settings.parameters.controlNames.value) { // important to keep this, because old viewers will not work properly if this property is null
+            (oldSettings.settings.controlNames as ISetting<any>).value = this._settings.parameters.controlNames.value;
+        }
+        if (this._settings.parameters.controlOrder.value) { // important to keep this, because old viewers will not work properly if this property is null
+            (oldSettings.settings.controlOrder as ISetting<any>).value = this._settings.parameters.controlOrder.value;
+        }
         (oldSettings.settings.defaultMaterialColor as ISetting<any>).value = this._settings.defaultMaterial.color.value;
         (oldSettings.settings.disablePan as ISetting<any>).value = !this._settings.viewer.scene.camera.controls.orbit.enablePan.value;
         (oldSettings.settings.disableZoom as ISetting<any>).value = !this._settings.viewer.scene.camera.controls.orbit.enableZoom.value;
@@ -335,7 +339,9 @@ export class Settings extends BaseSettings {
         (oldSettings.settings.lightScene as ISetting<any>).value = this._settings.viewer.scene.lights.lightScene.value;
         (oldSettings.settings.lightScenes as ISetting<any>).value = this._settings.viewer.scene.lights.lightScenes.value;
         (oldSettings.settings.panSpeed as ISetting<any>).value = this._settings.viewer.scene.camera.controls.orbit.panSpeed.value;
-        (oldSettings.settings.parametersHidden as ISetting<any>).value = this._settings.parameters.parametersHidden.value;
+        if (this._settings.parameters.parametersHidden.value) { // important to keep this, because old viewers will not work properly if this property is null
+            (oldSettings.settings.parametersHidden as ISetting<any>).value = this._settings.parameters.parametersHidden.value;
+        }
         (oldSettings.settings.pointSize as ISetting<any>).value = this._settings.viewer.scene.render.pointSize.value;
         (oldSettings.settings.revertAtMouseUpDuration as ISetting<any>).value = this._settings.viewer.scene.camera.revertAtMouseUpDuration.value;
         (oldSettings.settings.rotateSpeed as ISetting<any>).value = this._settings.viewer.scene.camera.controls.orbit.rotationSpeed.value;

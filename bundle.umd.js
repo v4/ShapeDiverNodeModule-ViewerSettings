@@ -665,8 +665,12 @@
             oldSettings.settings.clearColor.value = this._settings.viewer.scene.render.clearColor.value;
             oldSettings.settings.commitParameters.value = this._settings.viewer.commitParameters.value;
             oldSettings.settings.controlDamping.value = this._settings.viewer.scene.camera.controls.orbit.damping.value;
-            oldSettings.settings.controlNames.value = this._settings.parameters.controlNames.value;
-            oldSettings.settings.controlOrder.value = this._settings.parameters.controlOrder.value;
+            if (this._settings.parameters.controlNames.value) { // important to keep this, because old viewers will not work properly if this property is null
+                oldSettings.settings.controlNames.value = this._settings.parameters.controlNames.value;
+            }
+            if (this._settings.parameters.controlOrder.value) { // important to keep this, because old viewers will not work properly if this property is null
+                oldSettings.settings.controlOrder.value = this._settings.parameters.controlOrder.value;
+            }
             oldSettings.settings.defaultMaterialColor.value = this._settings.defaultMaterial.color.value;
             oldSettings.settings.disablePan.value = !this._settings.viewer.scene.camera.controls.orbit.enablePan.value;
             oldSettings.settings.disableZoom.value = !this._settings.viewer.scene.camera.controls.orbit.enableZoom.value;
@@ -678,7 +682,9 @@
             oldSettings.settings.lightScene.value = this._settings.viewer.scene.lights.lightScene.value;
             oldSettings.settings.lightScenes.value = this._settings.viewer.scene.lights.lightScenes.value;
             oldSettings.settings.panSpeed.value = this._settings.viewer.scene.camera.controls.orbit.panSpeed.value;
-            oldSettings.settings.parametersHidden.value = this._settings.parameters.parametersHidden.value;
+            if (this._settings.parameters.parametersHidden.value) { // important to keep this, because old viewers will not work properly if this property is null
+                oldSettings.settings.parametersHidden.value = this._settings.parameters.parametersHidden.value;
+            }
             oldSettings.settings.pointSize.value = this._settings.viewer.scene.render.pointSize.value;
             oldSettings.settings.revertAtMouseUpDuration.value = this._settings.viewer.scene.camera.revertAtMouseUpDuration.value;
             oldSettings.settings.rotateSpeed.value = this._settings.viewer.scene.camera.controls.orbit.rotationSpeed.value;
