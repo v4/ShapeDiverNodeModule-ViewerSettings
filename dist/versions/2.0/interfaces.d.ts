@@ -17,7 +17,7 @@ export interface ISettingsObject extends IGlobalSettingsObject {
     };
     parameters: {
         controlOrder: ISetting<string[]>;
-        controlNames: ISetting<string[]>;
+        controlNames: ISetting<{}>;
         parametersHidden: ISetting<string[]>;
     };
     viewer: {

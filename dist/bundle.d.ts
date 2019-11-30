@@ -66,7 +66,7 @@ interface ISettingsObject extends IGlobalSettingsObject {
     clearColor: ISetting<string>;
     commitParameters: ISetting<boolean>;
     controlDamping: ISetting<number>;
-    controlNames: ISetting<string[]>;
+    controlNames: ISetting<{}>;
     controlOrder: ISetting<string[]>;
     defaultMaterialColor: ISetting<string>;
     disablePan: ISetting<boolean>;

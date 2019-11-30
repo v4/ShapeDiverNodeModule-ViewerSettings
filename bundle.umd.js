@@ -322,8 +322,8 @@
                 clearColor: new Setting('#ffffff', function (v) { return true; }),
                 commitParameters: new Setting(false, function (v) { return true; }),
                 controlDamping: new Setting(0.1, function (v) { return true; }),
-                controlNames: new Setting(null, function (v) { return function (v) { return true; }; }),
-                controlOrder: new Setting(null, function (v) { return function (v) { return true; }; }),
+                controlNames: new Setting({}, function (v) { return true; }),
+                controlOrder: new Setting([], function (v) { return true; }),
                 defaultMaterialColor: new Setting('#d3d3d3', function (v) { return true; }),
                 disablePan: new Setting(false, function (v) { return true; }),
                 disableZoom: new Setting(false, function (v) { return true; }),
@@ -335,7 +335,7 @@
                 lightScene: new Setting('default', function (v) { return true; }),
                 lightScenes: new Setting(null, function (v) { return true; }),
                 panSpeed: new Setting(0.5, function (v) { return true; }),
-                parametersHidden: new Setting(null, function (v) { return function (v) { return true; }; }),
+                parametersHidden: new Setting([], function (v) { return true; }),
                 pointSize: new Setting(1.0, function (v) { return true; }),
                 revertAtMouseUpDuration: new Setting(800, function (v) { return true; }),
                 rotateSpeed: new Setting(0.25, function (v) { return true; }),
@@ -444,7 +444,7 @@
                 },
                 parameters: {
                     controlOrder: new Setting([], 'stringarray', ''),
-                    controlNames: new Setting([], 'stringarray', ''),
+                    controlNames: new Setting({}, function (v) { return true; }, ''),
                     parametersHidden: new Setting([], 'stringarray', ''),
                 },
                 viewer: {

@@ -84,7 +84,7 @@ var Settings = /** @class */ (function (_super) {
             },
             parameters: {
                 controlOrder: new Setting([], 'stringarray', ''),
-                controlNames: new Setting([], 'stringarray', ''),
+                controlNames: new Setting({}, function (v) { return true; }, ''),
                 parametersHidden: new Setting([], 'stringarray', ''),
             },
             viewer: {

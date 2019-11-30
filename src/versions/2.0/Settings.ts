@@ -81,7 +81,7 @@ export class Settings extends BaseSettings {
             },
             parameters: {
                 controlOrder: new Setting([], 'stringarray', ''),
-                controlNames: new Setting([], 'stringarray', ''),
+                controlNames: new Setting({}, (v:any) => true, ''),
                 parametersHidden: new Setting([], 'stringarray', ''),
             },
             viewer: {
