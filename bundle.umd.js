@@ -95,13 +95,15 @@
             }
             return;
         };
-        BaseSettings.prototype.getSettings = function () {
+        BaseSettings.prototype.getSettings = function (persistentOnly) {
+            if (persistentOnly === void 0) { persistentOnly = false; }
             var obj = {};
-            this._getSettings(this._settings, obj, '');
+            this._getSettings(this._settings, persistentOnly, obj, '');
             return obj;
         };
-        BaseSettings.prototype.toJSON = function () {
-            return this._toJSON(this._settings);
+        BaseSettings.prototype.toJSON = function (persistentOnly) {
+            if (persistentOnly === void 0) { persistentOnly = false; }
+            return this._toJSON(this._settings, persistentOnly);
         };
         // #endregion Public Abstract Methods (2)
         // #region Protected Methods (2)
@@ -126,15 +128,15 @@
                 }
             }
         };
-        BaseSettings.prototype._toJSON = function (iterable) {
+        BaseSettings.prototype._toJSON = function (iterable, persistentOnly) {
             var objJSON = {};
             for (var s in iterable) {
                 if (iterable[s] instanceof Setting) {
                     var setting = iterable[s];
-                    if (setting.persistent) {
+                    if (!persistentOnly || setting.persistent) {
                         var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
                         if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                            objJSON[s] = this._toJSON(iterable[s].value);
+                            objJSON[s] = this._toJSON(iterable[s].value, persistentOnly);
                         }
                         else {
                             objJSON[s] = iterable[s].value;
@@ -145,7 +147,7 @@
                     objJSON[s] = iterable[s];
                 }
                 else {
-                    objJSON[s] = this._toJSON(iterable[s]);
+                    objJSON[s] = this._toJSON(iterable[s], persistentOnly);
                 }
             }
             return objJSON;
@@ -181,15 +183,15 @@
                 }
             }
         };
-        BaseSettings.prototype._getSettings = function (iterable, obj, path) {
+        BaseSettings.prototype._getSettings = function (iterable, persistentOnly, obj, path) {
             var parentPath = path ? path + '.' : '';
             for (var s in iterable) {
                 if (iterable[s] instanceof Setting) {
                     var setting = iterable[s];
-                    if (setting.persistent) {
+                    if (!persistentOnly || setting.persistent) {
                         var settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
                         if (settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                            this._getSettings(iterable[s].value, obj, parentPath + s);
+                            this._getSettings(iterable[s].value, persistentOnly, obj, parentPath + s);
                         }
                         else {
                             obj[parentPath + s] = iterable[s].value;
@@ -200,7 +202,7 @@
                     obj[parentPath + s] = iterable[s];
                 }
                 else {
-                    this._getSettings(iterable[s], obj, parentPath + s);
+                    this._getSettings(iterable[s], persistentOnly, obj, parentPath + s);
                 }
             }
         };

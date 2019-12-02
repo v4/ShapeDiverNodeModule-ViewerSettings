@@ -38,8 +38,8 @@ export interface ISettings {
   convertToPreviousVersion(): ISettings;
   getSettingDefinitions(): any;
   getSettingObject(key: string): ISetting<any>;
-  getSettings(): any;
-  toJSON(): any;
+  getSettings(persistentOnly?: boolean): any;
+  toJSON(persistentOnly?: boolean): any;
 
   // #endregion Methods (6)
 }

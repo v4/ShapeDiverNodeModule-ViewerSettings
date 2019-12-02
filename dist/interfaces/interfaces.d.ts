@@ -15,8 +15,8 @@ export interface ISettings {
     convertToPreviousVersion(): ISettings;
     getSettingDefinitions(): any;
     getSettingObject(key: string): ISetting<any>;
-    getSettings(): any;
-    toJSON(): any;
+    getSettings(persistentOnly?: boolean): any;
+    toJSON(persistentOnly?: boolean): any;
 }
 export interface ISetting<T> {
     desc?: string;

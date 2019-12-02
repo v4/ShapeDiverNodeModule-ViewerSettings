@@ -49,14 +49,14 @@ export abstract class BaseSettings implements ISettings {
         return;
     }
 
-    public getSettings() {
+    public getSettings(persistentOnly: boolean = false) {
         let obj = {};
-        this._getSettings(this._settings, obj, '');
+        this._getSettings(this._settings, persistentOnly, obj, '');
         return obj;
     }
 
-    public toJSON() {
-        return this._toJSON(this._settings);
+    public toJSON(persistentOnly: boolean = false) {
+        return this._toJSON(this._settings, persistentOnly);
     }
 
     // #endregion Public Methods (4)
@@ -88,15 +88,15 @@ export abstract class BaseSettings implements ISettings {
         }
     }
 
-    protected _toJSON(iterable: IBaseSettingsObject) {
+    protected _toJSON(iterable: IBaseSettingsObject, persistentOnly: boolean) {
         let objJSON = {};
         for (let s in iterable) {
             if(iterable[s] instanceof Setting) {
                 let setting: ISetting<any> = (iterable[s] as ISetting<any>);
-                if(setting.persistent) {
+                if(!persistentOnly || setting.persistent) {
                     let settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
                     if(settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                        objJSON[s] = this._toJSON(iterable[s].value);
+                        objJSON[s] = this._toJSON(iterable[s].value, persistentOnly);
                     } else {
                         objJSON[s] = iterable[s].value;
                     }
@@ -104,7 +104,7 @@ export abstract class BaseSettings implements ISettings {
             } else if(iterable[s] instanceof String || typeof iterable[s] === 'string'){
                 objJSON[s] = iterable[s];
             } else {
-                objJSON[s] = this._toJSON((iterable[s] as IBaseSettingsObject));
+                objJSON[s] = this._toJSON((iterable[s] as IBaseSettingsObject), persistentOnly);
             }
         }
         return objJSON;
@@ -143,16 +143,16 @@ export abstract class BaseSettings implements ISettings {
         }
     }
 
-    private _getSettings(iterable: IBaseSettingsObject, obj: any, path?: string) {
+    private _getSettings(iterable: IBaseSettingsObject, persistentOnly: boolean, obj: any, path?: string) {
         let parentPath = path ? path + '.' : ''; 
 
         for (let s in iterable) {
             if(iterable[s] instanceof Setting) {
                 let setting: ISetting<any> = (iterable[s] as ISetting<any>);
-                if(setting.persistent) {
+                if(!persistentOnly || setting.persistent) {
                     let settingChildren = typeof setting.value === 'object' && setting.value !== null ? Object.values(setting.value) : [];
                     if(settingChildren.length !== 0 && settingChildren[0] instanceof Setting) {
-                        this._getSettings(iterable[s].value, obj, parentPath+s);
+                        this._getSettings(iterable[s].value, persistentOnly, obj, parentPath+s);
                     } else {
                         obj[parentPath+s] = iterable[s].value;
                     }
@@ -160,7 +160,7 @@ export abstract class BaseSettings implements ISettings {
             } else if(iterable[s] instanceof String || typeof iterable[s] === 'string'){
                 obj[parentPath+s] = iterable[s];
             } else {
-                this._getSettings((iterable[s] as IBaseSettingsObject), obj, parentPath+s);
+                this._getSettings((iterable[s] as IBaseSettingsObject), persistentOnly, obj, parentPath+s);
             }
         }
     }
