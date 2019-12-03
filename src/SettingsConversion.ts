@@ -31,7 +31,7 @@ export class SettingsConversion {
     }
 
     private _mapViewerVersionSettingsVersion: IViewerVersionSettingsVersion[] = [
-        new ViewerVersionSettingsVersion('2.19.0', '2.0'), // TODO SS-1394 change to 2.18.0 after testing
+        new ViewerVersionSettingsVersion('2.18.0', '2.0'), 
     ]
 
     // #endregion Properties (2)

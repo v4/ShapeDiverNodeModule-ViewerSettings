@@ -727,7 +727,7 @@
                 '2.0.0': Settings$1
             };
             this._mapViewerVersionSettingsVersion = [
-                new ViewerVersionSettingsVersion('2.19.0', '2.0'),
+                new ViewerVersionSettingsVersion('2.18.0', '2.0'),
             ];
             for (var _i = 0, _a = Object.keys(this._versions); _i < _a.length; _i++) {
                 var k = _a[_i];
