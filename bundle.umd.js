@@ -736,7 +736,8 @@
         }
         // #endregion Constructors (1)
         // #region Public Methods (2)
-        SettingsConversion.prototype.convert = function (settingsJSON, version) {
+        SettingsConversion.prototype.convert = function (settingsJSON, version, persistentOnly) {
+            if (persistentOnly === void 0) { persistentOnly = false; }
             var settings = this.createSettingsObject(settingsJSON);
             var currentVersion = settings.version, requiredVersion = new SettingsVersion(version);
             var indexCurrent = this._findVersionIndex(currentVersion);
@@ -757,7 +758,7 @@
                     convertedSettings = convertedSettings.convertToPreviousVersion();
                 }
             }
-            return convertedSettings.toJSON();
+            return convertedSettings.toJSON(persistentOnly);
         };
         SettingsConversion.prototype.createSettingsObject = function (settingsJSON) {
             if (!settingsJSON.settings_version)

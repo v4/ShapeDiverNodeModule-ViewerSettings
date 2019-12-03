@@ -47,7 +47,7 @@ export class SettingsConversion {
 
     // #region Public Methods (2)
 
-    public convert(settingsJSON: any, version: string): any {
+    public convert(settingsJSON: any, version: string, persistentOnly: boolean = false): any {
         let settings: ISettings = this.createSettingsObject(settingsJSON);
 
         let currentVersion = settings.version,
@@ -70,7 +70,7 @@ export class SettingsConversion {
                 convertedSettings = convertedSettings.convertToPreviousVersion();
             }
         }
-        return convertedSettings.toJSON();
+        return convertedSettings.toJSON(persistentOnly);
     }
 
     public createSettingsObject(settingsJSON: any): ISettings {
