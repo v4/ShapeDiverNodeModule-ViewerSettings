@@ -268,8 +268,8 @@ export class Settings extends BaseSettings {
         (this._settings.viewer.commitParameters as ISetting<any>).value = oldSettings.commitParameters.value;
         (this._settings.viewer.scene.camera.controls.orbit.damping as ISetting<any>).value = oldSettings.controlDamping.value;
         (this._settings.viewer.scene.camera.controls.orthographic.damping as ISetting<any>).value = oldSettings.controlDamping.value;
-            (this._settings.parameters.controlNames as ISetting<any>).value = oldSettings.controlNames.value;
-            (this._settings.parameters.controlOrder as ISetting<any>).value = oldSettings.controlOrder.value;
+        (this._settings.parameters.controlNames as ISetting<any>).value = oldSettings.controlNames.value;
+        (this._settings.parameters.controlOrder as ISetting<any>).value = oldSettings.controlOrder.value;
         (this._settings.viewer.scene.camera.controls.orbit.enablePan as ISetting<any>).value = !oldSettings.disablePan.value;
         (this._settings.viewer.scene.camera.controls.orthographic.enablePan as ISetting<any>).value = !oldSettings.disablePan.value;
         (this._settings.viewer.scene.camera.controls.orbit.enableZoom as ISetting<any>).value = !oldSettings.disableZoom.value;
@@ -281,9 +281,11 @@ export class Settings extends BaseSettings {
         (this._settings.viewer.scene.camera.cameraTypes.perspective.fov as ISetting<any>).value = oldSettings.fov.value;
         (this._settings.viewer.scene.lights.lightScene as ISetting<any>).value = oldSettings.lightScene.value;
         (this._settings.viewer.scene.lights.lightScenes as ISetting<any>).value = oldSettings.lightScenes.value;
+        (this._settings.viewer.scene.camera.controls.orbit.panSpeed as ISetting<any>).value = oldSettings.panSpeed.value;
         (this._settings.parameters.parametersHidden as ISetting<any>).value = oldSettings.parametersHidden.value;
         (this._settings.viewer.scene.render.pointSize as ISetting<any>).value = oldSettings.pointSize.value;
         (this._settings.viewer.scene.camera.revertAtMouseUpDuration as ISetting<any>).value = oldSettings.revertAtMouseUpDuration.value;
+        (this._settings.viewer.scene.camera.controls.orbit.rotationSpeed as ISetting<any>).value = oldSettings.rotateSpeed.value;
         (this._settings.viewer.scene.material.environmentMapAsBackground as ISetting<any>).value = oldSettings.showEnvironmentMap.value;
         (this._settings.viewer.scene.gridVisibility as ISetting<any>).value = oldSettings.showGrid.value;
         (this._settings.viewer.scene.groundPlaneVisibility as ISetting<any>).value = oldSettings.showGroundPlane.value;
