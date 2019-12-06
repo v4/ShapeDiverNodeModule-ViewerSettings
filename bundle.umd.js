@@ -630,9 +630,11 @@
             this._settings.viewer.scene.camera.cameraTypes.perspective.fov.value = oldSettings.fov.value;
             this._settings.viewer.scene.lights.lightScene.value = oldSettings.lightScene.value;
             this._settings.viewer.scene.lights.lightScenes.value = oldSettings.lightScenes.value;
+            this._settings.viewer.scene.camera.controls.orbit.panSpeed.value = oldSettings.panSpeed.value;
             this._settings.parameters.parametersHidden.value = oldSettings.parametersHidden.value;
             this._settings.viewer.scene.render.pointSize.value = oldSettings.pointSize.value;
             this._settings.viewer.scene.camera.revertAtMouseUpDuration.value = oldSettings.revertAtMouseUpDuration.value;
+            this._settings.viewer.scene.camera.controls.orbit.rotationSpeed.value = oldSettings.rotateSpeed.value;
             this._settings.viewer.scene.material.environmentMapAsBackground.value = oldSettings.showEnvironmentMap.value;
             this._settings.viewer.scene.gridVisibility.value = oldSettings.showGrid.value;
             this._settings.viewer.scene.groundPlaneVisibility.value = oldSettings.showGroundPlane.value;
