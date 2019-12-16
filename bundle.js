@@ -345,8 +345,8 @@ var Settings = /** @class */ (function (_super) {
         };
         if (settingsJSON) {
             if ((!settingsJSON.clearAlpha || !settingsJSON.clearColor) && settingsJSON.backgroundColor && typeof settingsJSON.backgroundColor === 'string') {
-                settingsJSON.clearAlpha = settingsJSON.backgroundColor.substring(0, 8);
-                settingsJSON.clearColor = settingsJSON.backgroundColor.substring(8);
+                settingsJSON.clearColor = settingsJSON.backgroundColor.substring(0, 8);
+                settingsJSON.clearAlpha = settingsJSON.backgroundColor.substring(8);
             }
             if (settingsJSON.defaultMaterialColor && Array.isArray(settingsJSON.defaultMaterialColor)) {
                 var temp = '#';
