@@ -592,13 +592,54 @@ var Settings$1 = /** @class */ (function (_super) {
         this._settings.defaultMaterial.color.value = oldSettings.defaultMaterialColor.value;
         this._settings.build_date.value = oldSettings.build_date.value;
         this._settings.build_version.value = oldSettings.build_version.value;
-        if (!(oldSettings.camera.value.position.value.x === 5 && oldSettings.camera.value.position.value.y === 5 && oldSettings.camera.value.position.value.z === 5 && oldSettings.camera.value.target.value.x === 0 && oldSettings.camera.value.target.value.y === 0 && oldSettings.camera.value.target.value.z === 0)) {
+        if (!(oldSettings.camera.value.position.value.x === 5 &&
+            oldSettings.camera.value.position.value.y === 5 &&
+            oldSettings.camera.value.position.value.z === 5 &&
+            oldSettings.camera.value.target.value.x === 0 &&
+            oldSettings.camera.value.target.value.y === 0 &&
+            oldSettings.camera.value.target.value.z === 0)
+            &&
+                !(oldSettings.camera.value.position.value.x === 0 &&
+                    oldSettings.camera.value.position.value.y === 0 &&
+                    oldSettings.camera.value.position.value.z === 0 &&
+                    oldSettings.camera.value.target.value.x === 0 &&
+                    oldSettings.camera.value.target.value.y === 0 &&
+                    oldSettings.camera.value.target.value.z === 0)) {
             this._settings.viewer.scene.camera.cameraTypes.perspective.default.value.position.value = oldSettings.camera.value.position.value;
             this._settings.viewer.scene.camera.cameraTypes.perspective.default.value.target.value = oldSettings.camera.value.target.value;
         }
-        if (!(oldSettings.cameraOrtho.value.position.value.x === 5 && oldSettings.cameraOrtho.value.position.value.y === 5 && oldSettings.cameraOrtho.value.position.value.z === 5 && oldSettings.cameraOrtho.value.target.value.x === 0 && oldSettings.cameraOrtho.value.target.value.y === 0 && oldSettings.cameraOrtho.value.target.value.z === 0)) {
+        if (!(oldSettings.cameraOrtho.value.position.value.x === 5 &&
+            oldSettings.cameraOrtho.value.position.value.y === 5 &&
+            oldSettings.cameraOrtho.value.position.value.z === 5 &&
+            oldSettings.cameraOrtho.value.target.value.x === 0 &&
+            oldSettings.cameraOrtho.value.target.value.y === 0 &&
+            oldSettings.cameraOrtho.value.target.value.z === 0)
+            &&
+                !(oldSettings.cameraOrtho.value.position.value.x === 0 &&
+                    oldSettings.cameraOrtho.value.position.value.y === 0 &&
+                    oldSettings.cameraOrtho.value.position.value.z === 0 &&
+                    oldSettings.cameraOrtho.value.target.value.x === 0 &&
+                    oldSettings.cameraOrtho.value.target.value.y === 0 &&
+                    oldSettings.cameraOrtho.value.target.value.z === 0)) {
             this._settings.viewer.scene.camera.cameraTypes.orthographic.default.value.position.value = oldSettings.cameraOrtho.value.position.value;
             this._settings.viewer.scene.camera.cameraTypes.orthographic.default.value.target.value = oldSettings.cameraOrtho.value.target.value;
+        }
+        else if (oldSettings.topView.value &&
+            !(oldSettings.camera.value.position.value.x === 5 &&
+                oldSettings.camera.value.position.value.y === 5 &&
+                oldSettings.camera.value.position.value.z === 5 &&
+                oldSettings.camera.value.target.value.x === 0 &&
+                oldSettings.camera.value.target.value.y === 0 &&
+                oldSettings.camera.value.target.value.z === 0)
+            &&
+                !(oldSettings.camera.value.position.value.x === 0 &&
+                    oldSettings.camera.value.position.value.y === 0 &&
+                    oldSettings.camera.value.position.value.z === 0 &&
+                    oldSettings.camera.value.target.value.x === 0 &&
+                    oldSettings.camera.value.target.value.y === 0 &&
+                    oldSettings.camera.value.target.value.z === 0)) {
+            this._settings.viewer.scene.camera.cameraTypes.orthographic.default.value.position.value = oldSettings.camera.value.position.value;
+            this._settings.viewer.scene.camera.cameraTypes.orthographic.default.value.target.value = oldSettings.camera.value.target.value;
         }
         this._settings.viewer.scene.render.ambientOcclusion.value = oldSettings.ambientOcclusion.value;
         this._settings.viewer.scene.camera.controls.orbit.autoRotationSpeed.value = oldSettings.autoRotateSpeed.value;

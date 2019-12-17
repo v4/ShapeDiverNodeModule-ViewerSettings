@@ -249,14 +249,71 @@ export class Settings extends BaseSettings {
         (this._settings.build_date as ISetting<any>).value = oldSettings.build_date.value;
         (this._settings.build_version as ISetting<any>).value = oldSettings.build_version.value;
 
-        if(!((oldSettings.camera as ISetting<any>).value.position.value.x === 5 && (oldSettings.camera as ISetting<any>).value.position.value.y === 5 && (oldSettings.camera as ISetting<any>).value.position.value.z === 5 && (oldSettings.camera as ISetting<any>).value.target.value.x === 0 && (oldSettings.camera as ISetting<any>).value.target.value.y === 0 && (oldSettings.camera as ISetting<any>).value.target.value.z === 0)) {
+        if( !(
+                (oldSettings.camera as ISetting<any>).value.position.value.x === 5 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.y === 5 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.z === 5 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.x === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.y === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.z === 0
+            )
+            &&
+            !(
+                (oldSettings.camera as ISetting<any>).value.position.value.x === 0 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.y === 0 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.z === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.x === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.y === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.z === 0
+            )
+        ) {
             ((this._settings.viewer.scene.camera.cameraTypes.perspective.default as ISetting<any>).value.position as ISetting<any>).value = (oldSettings.camera as ISetting<any>).value.position.value;
             ((this._settings.viewer.scene.camera.cameraTypes.perspective.default as ISetting<any>).value.target as ISetting<any>).value = (oldSettings.camera as ISetting<any>).value.target.value;    
         }
 
-        if(!((oldSettings.cameraOrtho as ISetting<any>).value.position.value.x === 5 && (oldSettings.cameraOrtho as ISetting<any>).value.position.value.y === 5 && (oldSettings.cameraOrtho as ISetting<any>).value.position.value.z === 5 && (oldSettings.cameraOrtho as ISetting<any>).value.target.value.x === 0 && (oldSettings.cameraOrtho as ISetting<any>).value.target.value.y === 0 && (oldSettings.cameraOrtho as ISetting<any>).value.target.value.z === 0)) {
+        if( !(
+                (oldSettings.cameraOrtho as ISetting<any>).value.position.value.x === 5 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.position.value.y === 5 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.position.value.z === 5 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.target.value.x === 0 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.target.value.y === 0 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.target.value.z === 0
+            )
+            && 
+            !(
+                (oldSettings.cameraOrtho as ISetting<any>).value.position.value.x === 0 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.position.value.y === 0 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.position.value.z === 0 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.target.value.x === 0 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.target.value.y === 0 && 
+                (oldSettings.cameraOrtho as ISetting<any>).value.target.value.z === 0
+            )
+        ) {
             ((this._settings.viewer.scene.camera.cameraTypes.orthographic.default as ISetting<any>).value.position as ISetting<any>).value = (oldSettings.cameraOrtho as ISetting<any>).value.position.value;
             ((this._settings.viewer.scene.camera.cameraTypes.orthographic.default as ISetting<any>).value.target as ISetting<any>).value = (oldSettings.cameraOrtho as ISetting<any>).value.target.value;        
+        }
+        else if(
+            oldSettings.topView.value &&
+            !(
+                (oldSettings.camera as ISetting<any>).value.position.value.x === 5 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.y === 5 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.z === 5 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.x === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.y === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.z === 0
+            )
+            &&
+            !(
+                (oldSettings.camera as ISetting<any>).value.position.value.x === 0 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.y === 0 && 
+                (oldSettings.camera as ISetting<any>).value.position.value.z === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.x === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.y === 0 && 
+                (oldSettings.camera as ISetting<any>).value.target.value.z === 0
+            )
+        ) {
+            ((this._settings.viewer.scene.camera.cameraTypes.orthographic.default as ISetting<any>).value.position as ISetting<any>).value = (oldSettings.camera as ISetting<any>).value.position.value;
+            ((this._settings.viewer.scene.camera.cameraTypes.orthographic.default as ISetting<any>).value.target as ISetting<any>).value = (oldSettings.camera as ISetting<any>).value.target.value;    
         }
 
         (this._settings.viewer.scene.render.ambientOcclusion as ISetting<any>).value = oldSettings.ambientOcclusion.value;
