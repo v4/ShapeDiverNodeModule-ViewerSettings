@@ -81,6 +81,9 @@ export class Settings extends BaseSettings {
                     temp += Number(settingsJSON.defaultMaterialColor[i]).toString(16);
                 settingsJSON.defaultMaterialColor = temp;
             }
+            if(settingsJSON.topView && settingsJSON.camera && !settingsJSON.cameraOrtho) {
+                settingsJSON.cameraOrtho = settingsJSON.camera;
+            }
 
             this._fromJSON(settingsJSON, this._settings);
         }

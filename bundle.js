@@ -354,6 +354,9 @@ var Settings = /** @class */ (function (_super) {
                     temp += Number(settingsJSON.defaultMaterialColor[i]).toString(16);
                 settingsJSON.defaultMaterialColor = temp;
             }
+            if (settingsJSON.topView && settingsJSON.camera && !settingsJSON.cameraOrtho) {
+                settingsJSON.cameraOrtho = settingsJSON.camera;
+            }
             _this._fromJSON(settingsJSON, _this._settings);
         }
         return _this;
