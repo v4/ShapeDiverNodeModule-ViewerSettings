@@ -96,6 +96,7 @@ export class Settings extends BaseSettings {
                 // strictMode: new Setting(false, 'boolean', '', false),
                 showMessages: new Setting(true, 'boolean', 'Show or don\'t show user messages in the viewport', false),
                 hasRestoredSettings: new Setting(false, 'boolean', 'True if settings have been restored from a settings object delivered by a CommPlugin', false),
+                useModelSettings: new Setting(false, 'boolean', 'True if settings object delivered by first CommPlugin should be used', false),
             
                 // exposeViewer: new Setting(false, 'boolean'),
                 commitParameters: new Setting(false, 'boolean', 'Use or don\'t commit mode for parameters'),

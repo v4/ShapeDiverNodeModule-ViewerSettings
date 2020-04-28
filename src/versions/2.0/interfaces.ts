@@ -71,6 +71,7 @@ export interface ISettingsObject extends IGlobalSettingsObject {
 
         viewerRuntimeId: ISetting<string>,
         hasRestoredSettings: ISetting<boolean>,
+        useModelSettings: ISetting<boolean>,
         showMessages: ISetting<boolean>,
         // exposeViewer: ISetting<boolean>,
         

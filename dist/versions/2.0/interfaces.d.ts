@@ -27,6 +27,7 @@ export interface ISettingsObject extends IGlobalSettingsObject {
         messageLoggingLevel: ISetting<number>;
         viewerRuntimeId: ISetting<string>;
         hasRestoredSettings: ISetting<boolean>;
+        useModelSettings: ISetting<boolean>;
         showMessages: ISetting<boolean>;
         commitSettings: ISetting<boolean>;
         commitParameters: ISetting<boolean>;
