@@ -574,6 +574,7 @@ var ShapediverViewerSettings = (function (exports) {
                         render: {
                             ambientOcclusion: new Setting(true, 'boolean', 'Enable / disable ambient occlusion for rendering'),
                             beautyRenderDelay: new Setting(50, 'notnegative', 'Amount of which the beauty rendering is delayed'),
+                            beautyRenderBlendingDuration: new Setting(1500, 'notnegative', 'Time needed to blend the results of the beauty rendering'),
                             clearColor: new Setting('#ffffff', 'string', 'Set background color'),
                             clearAlpha: new Setting(1.0, 'factor', 'Set background alpha value'),
                             pointSize: new Setting(1.0, 'notnegative', 'Set size of point objects'),

@@ -1,6 +1,6 @@
 {
   "name": "shapedivernodemodule-viewersettings",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ShapeDiverNodeModule-ViewerSettings",
   "main": "./bundle.js",
   "browser": "./bundle.cjs.js",
