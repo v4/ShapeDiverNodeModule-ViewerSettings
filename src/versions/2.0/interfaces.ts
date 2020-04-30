@@ -163,6 +163,7 @@ export interface ISettingsObject extends IGlobalSettingsObject {
             render: {
                 ambientOcclusion: ISetting<boolean>,
                 beautyRenderDelay: ISetting<number>,
+                beautyRenderBlendingDuration: ISetting<number>,
                 clearAlpha: ISetting<number>,
                 clearColor: ISetting<string>,
                 pointSize: ISetting<number>,
