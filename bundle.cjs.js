@@ -499,7 +499,7 @@ var ShapediverViewerSettings = (function (exports) {
                                     enableRotation: new Setting(true, 'boolean', 'Enable / disable camera rotation'),
                                     enableZoom: new Setting(true, 'boolean', 'Enable / disable zooming'),
                                     input: new Setting({ keys: { up: 38, down: 40, left: 37, right: 39 }, mouse: { rotate: 0, zoom: 1, pan: 2 }, touch: { rotate: 1, zoom: 2, pan: 3 }, }, 'any'),
-                                    keyPanSpeed: new Setting(0.5, 'factor', 'Speed of panning when using the keyboard'),
+                                    keyPanSpeed: new Setting(0.5, 'notnegative', 'Speed of panning when using the keyboard'),
                                     movementSmoothness: new Setting(0.5, 'factor', 'How much to the current movement is affected by the previous one'),
                                     restrictions: {
                                         position: {
@@ -533,9 +533,9 @@ var ShapediverViewerSettings = (function (exports) {
                                             maxDistance: new Setting(Infinity, 'notnegative', 'Maximum distance between camera position and target'),
                                         }, function (value) { return true; }, 'Minimum and maximum distance between camera position and target', false),
                                     },
-                                    rotationSpeed: new Setting(0.5, 'factor', 'Speed of camera rotation'),
-                                    panSpeed: new Setting(0.5, 'factor', 'Speed of panning'),
-                                    zoomSpeed: new Setting(0.5, 'factor', 'Speed of zooming'),
+                                    rotationSpeed: new Setting(0.5, 'notnegative', 'Speed of camera rotation'),
+                                    panSpeed: new Setting(0.5, 'notnegative', 'Speed of panning'),
+                                    zoomSpeed: new Setting(0.5, 'notnegative', 'Speed of zooming'),
                                 },
                                 fps: {},
                                 orthographic: {
@@ -544,10 +544,10 @@ var ShapediverViewerSettings = (function (exports) {
                                     enablePan: new Setting(true, 'boolean', 'Enable / disable panning in general, also refer to enableKeyPan'),
                                     enableZoom: new Setting(true, 'boolean', 'Enable / disable zooming'),
                                     input: new Setting({ keys: { up: 38, down: 40, left: 37, right: 39 }, mouse: { rotate: 0, zoom: 1, pan: 2 }, touch: { rotate: 1, zoom: 2, pan: 3 } }, 'any'),
-                                    keyPanSpeed: new Setting(0.5, 'factor', 'Speed of panning when using the keyboard'),
+                                    keyPanSpeed: new Setting(0.5, 'notnegative', 'Speed of panning when using the keyboard'),
                                     movementSmoothness: new Setting(0.5, 'factor', 'How much to the current movement is affected by the previous one'),
-                                    panSpeed: new Setting(0.5, 'factor', 'Speed of panning'),
-                                    zoomSpeed: new Setting(0.5, 'factor', 'Speed of zooming'),
+                                    panSpeed: new Setting(0.5, 'notnegative', 'Speed of panning'),
+                                    zoomSpeed: new Setting(0.5, 'notnegative', 'Speed of zooming'),
                                 }
                             },
                             enableCameraControls: new Setting(true, 'boolean', 'Enable / disable camera controls'),
